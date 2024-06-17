@@ -2,19 +2,38 @@
 (1) __MIT Course 6.036: Introduction to Machine Learning__ \
 [https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/course/]
 
-Here is the content:
-1: Basics \
+Here is the content: \
+1: Basics 
+>  Introduction to ML - perspective and history \
+>  Introduction to ML - estimation and generalization \
+  Supervised learning - setting \
+  Supervised learning - hypotheses \
+  Evaluating predictions - loss functions \
+  Evaluating hypotheses - training set error \
+  Learning algorithms 
+ 
 2: Perceptrons \
+
 3: Features \
+
 4: Margin Maximization \
+
 5: Regression \
+
 6: Neural Networks I \
+
 7: Neural Networks II \
+
 8: Convolutional Neural Networks \
+
 9: State Machines and Markov Decision Processes \
+
 10: Reinforcement Learning \
+
 11: Recurrent Neural Networks \
+
 12: Recommender Systems \
+
 13: Decision Trees and Nearest Neighbors \
 
  \
