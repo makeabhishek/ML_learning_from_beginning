@@ -1,9 +1,8 @@
 References:
-MIT course 6.036: Introduction to Machine Learning
+(1) __MIT Course 6.036: Introduction to Machine Learning__
 [https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/course/]
 
 Here is the content:
-__
 1: Basics
 2: Perceptrons
 3: Features
@@ -17,4 +16,16 @@ __
 11: Recurrent Neural Networks
 12: Recommender Systems
 13: Decision Trees and Nearest Neighbors
-__
+
+(2) __Microsoft ML for beginners course:__
+https://github.com/microsoft/ML-For-Beginners
+
+1: Introduction
+2: Regression
+3: Web-App
+4: Classification
+5: Clustering
+6: NLP
+7: TimeSeries
+8: Reinforcement
+9: Real-World
