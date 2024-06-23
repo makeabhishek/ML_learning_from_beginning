@@ -22,7 +22,7 @@ Humans have to do the following task except task (5), which computers do. \
 (2) Generalization: Future prediction, forecasting
 
 ## Classification of ML
-### Supervised Learning \
+### (1) Supervised Learning \
 Given some input and output data, we learn the mapping so that in future we can use this mapping function to predict the output for a given input. It is called supervised because we have given both questions and answers to the ML model.
 Example: \
 Image classification of different animals. \
@@ -36,7 +36,8 @@ Test your data to classify online using (1) Teachable Machine for Image Classifi
 (ii) Regression \
 
 
-### Unsupervised Learning \
+### (2) Unsupervised Learning \
 Learn from the data. No answers or labels to the data. For example, Amazon product suggestions.
 
-### Reinforcement Learning \
+### (3) Reinforcement Learning \
+
