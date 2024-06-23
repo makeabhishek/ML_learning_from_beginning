@@ -1,14 +1,15 @@
 Watch the video content:
-Example: I'll start by thinking about the example related to ML. Lets take the course (mathematics) we are taking in our undergrduate curriculum. The professor gave as notes, teaching material, and homework.
+Example: I'll start by thinking about the example related to ML. Let's take the course (mathematics) we are taking in our undergraduate curriculum. The professor gave notes, teaching material, and homework. This is training data. Now test data will be your examination and you will check how well you perform. Validation data can be assignments that you get during teaching.
+
 ## The objective of ML
 _Make decisions or predictions based on data_
 
-## Important (six) steps to make ML application work:
+## Pipeline (six steps) to make ML application work:
 Humans have to do the following task except task (5), which computers do. \
-(1) Get Data (do prediction not only do data processing) \
-(2) Think of the space of possible solutions \
-(3) Characterize (objective) what makes a good solution: data preparation \
-(4) Find algorithm \
+(1) Get Data (do prediction not only do data processing). \
+(2) Think of the space of possible solutions. (e.g. linear relationship, polynomial, etc.) \
+(3) Characterize (objective) what makes a good solution: data preparation e.g., loss function.\
+(4) Find algorithm. e.g., Choose the best option that reduces the loss through optimization, based on steps 2 and 3. \
 (5) Run algorithm (only part done by computer) \
 (6) Validate results. \
 
@@ -31,6 +32,7 @@ Binary classification, detecting tumour or not. \
 (i) Classification \
 Test your data to classify online using (1) Teachable Machine for Image Classification: \ 
 [teachable machine]([https://website-name.com](https://teachablemachine.withgoogle.com/train/image) 'Classification')
+
 (ii) Regression \
 
 
