@@ -30,6 +30,7 @@ device = torch.device('cuda' if torch.cuda.is_avaialble() else 'cpu')
 
 __Create a Fully connected network (FCN) layers__ \
 _Create a model class that inherits nn.Module_ \
+Create a class that defines the neural network. This involves inheriting from _nn.Module_ and implementing the __init__ and __forward__ methods.
 ```
 class Model(nn.Module):                      # create a class that inherit nn.module
   # Input layer (4 features of the flower) -->
@@ -76,11 +77,11 @@ my_df
 
 __Train Test Split!  Set X, y__
 ```
-X = my_df.drop('variety', axis=1)    # features, all column except the last one.
+X = my_df.drop('variety', axis=1)    # features, all columns except the last one (i.e., variety).
 y = my_df['variety']                 # outcome
 
 
-# Convert these to numpy arrays
+# Convert these to NumPy arrays
 X = X.values
 y = y.values
 
@@ -90,6 +91,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
      
 __Convert X features to float tensors and Convert y labels to tensors long__
 ```
+# We are converting the data type to match it with the input data type provided in the IRIS dataset.
 X_train = torch.FloatTensor(X_train)
 X_test = torch.FloatTensor(X_test)
 
@@ -141,7 +143,7 @@ plt.xlabel('Epoch')
 __Evaluate Model on Test Data Set (validate the model on the test set)__
 ```
 # Around 20% of data
-with torch.no_grad():              # Basically turn off backpropagation. We don't need in testing
+with torch.no_grad():                # Basically turn off backpropagation. We don't need in testing
   y_eval = model.forward(X_test)     # X_test are features from our test set, y_eval will be predictions
   loss = criterion(y_eval, y_test)   # Find the loss or error
 print(loss)
