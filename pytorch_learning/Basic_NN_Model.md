@@ -1,16 +1,196 @@
-In this script, we will create a Basic Neural Network Model and understand some terminologies.
+We will create a basic Neural Network (NN) Model and understand some terminologies.
 
-Write a code to create a NN, which takes the __input__, and __Forward__ it to __hidden layer__, then to next __hidden layer__ and finally gives __output__ \
+__What is a Neural network:__ A neural network is a machine learning method that employs interconnected _nodes_, or _neurons_, arranged in _layers_ to enable computers to process data similarly to the human brain. This approach, known as _deep learning_, is a subset of artificial intelligence. The figure shows an NN schematic with three input neurons, and two hidden layers, which are fully connected i.e., each neuron is connected with another neuron of the next layer, forward path, and output layer with one neuron.
 
+<img width="764" alt="image" src="https://github.com/user-attachments/assets/85c1bc50-7b6b-469c-a3e1-e59b9e17e1ad">
 
-<img width="612" alt="image" src="https://github.com/user-attachments/assets/255653fe-68ff-4087-be5b-0d8cfeb959bd">
+__Task:__ Write a code to create a NN, which takes the __input__, and __Forward__ it to __hidden layer__, then to next __hidden layer__ and finally gives __output__
 
+__Dataset:__ IRIS dataset (https://archive.ics.uci.edu/dataset/53/iris)
 
-__Dataset:__ \
-https://archive.ics.uci.edu/dataset/53/iris
+The dataset contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are not linearly separable from each other.
 
+__Import necessary packages__
 ```
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
+import torch.nn.functional as F     # all functions without any parameters, help in moving forward
+
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+from sklearn.model_selection import train_test_split
 ```
+
+__Set Devices__
+```
+device = torch.device('cuda' if torch.cuda.is_avaialble() else 'cpu')
+```
+
+__Create a Fully connected network (FCN) layers__ \
+_Create a model class that inherits nn.Module_ \
+```
+class Model(nn.Module):                      # create a class that inherit nn.module
+  # Input layer (4 features of the flower) -->
+  # Hidden Layer1 (number of neurons) -->
+  # H2 (n) -->
+  # output (3 classes of iris flowers)
+
+  def __init__(self, in_features=4, h1=8, h2=9, output_features=3): # initialising the model and pass input arguments. We consider 8 neurons in h1 and 9 neurons in h2 layer, out has 3 neurons as we have three output features,
+    super().__init__() # instantiate our nn.Module
+    self.fc1 = nn.Linear(in_features, h1)    # fully connected layer 1, start from input features 'in_features' to hidden layer h1
+    self.fc2 = nn.Linear(h1, h2)             # fully connected layer 2, start from hidden layer h1 and move to hidden layer h2
+    self.out = nn.Linear(h2, out_features)   # moving from hidden layer h2 to output
+
+  # Now we have a basic model setup. We need a function that moves everything forward
+  def forward(self, x):
+    x = F.relu(self.fc1(x))    # start with layer 1
+    x = F.relu(self.fc2(x))    # move to layer 2
+    x = self.out(x)            # push to output layer
+
+    return x    
+```
+__Pick a manual seed for randomization__
+Manual seeding to keep random numbers the same.
+```
+torch.manual_seed(41)
+# Create an instance of a model
+model = Model()    # Turn ON all the Model
+```
+__Load Data__
+```
+url = 'https://gist.githubusercontent.com/netj/8836201/raw/6f9306ad21398ea43cba4f7d537619d0e07d5ae3/iris.csv'
+my_df = pd.read_csv(url)
+```
+__Check Data and post process__
+```
+my_df.tail()
+
+# Encoding: Change the last column from strings to integers. 
+my_df['variety'] = my_df['variety'].replace('Setosa', 0.0)
+my_df['variety'] = my_df['variety'].replace('Versicolor', 1.0)
+my_df['variety'] = my_df['variety'].replace('Virginica', 2.0)
+my_df
+```
+
+__Train Test Split!  Set X, y__
+```
+X = my_df.drop('variety', axis=1)    # features, all column except the last one.
+y = my_df['variety']                 # outcome
+
+
+# Convert these to numpy arrays
+X = X.values
+y = y.values
+
+# Train Test Split: test size = 20%, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=41)
+```
+     
+__Convert X features to float tensors and Convert y labels to tensors long__
+```
+X_train = torch.FloatTensor(X_train)
+X_test = torch.FloatTensor(X_test)
+
+y_train = torch.LongTensor(y_train)
+y_test = torch.LongTensor(y_test)
+```
+
+__Set the criterion of the model to measure the error, how far off the predictions are from the data__
+```
+criterion = nn.CrossEntropyLoss()      #
+# Choose Adam Optimizer, lr = learning rate (if an error doesn't go down after a bunch of iterations (epochs), lower our learning rate)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+print(model.parameters)
+```
+
+__Train the neural network (Model)__
+```
+# Epochs? (one run through all the training data in our network)
+epochs = 100
+losses = []
+for i in range(epochs):
+  # Go forward and get a prediction
+  y_pred = model.forward(X_train) # Get predicted results
+
+  # Measure the loss/error, gonna be high at first
+  loss = criterion(y_pred, y_train) # predicted values vs the y_train
+
+  # Keep Track of our losses
+  losses.append(loss.detach().numpy())
+
+  # print every 10 epoch
+  if i % 10 == 0:
+    print(f'Epoch: {i} and loss: {loss}')
+
+  # Do some backpropagation: take the error rate of forward propagation and feed it back through the network to fine-tune the weights.
+  optimizer.zero_grad()
+  loss.backward()
+  optimizer.step()
+```
+
+__Plot the loss!__
+```
+plt.plot(range(epochs), losses)
+plt.ylabel("loss/error")
+plt.xlabel('Epoch')
+```
+
+__Evaluate Model on Test Data Set (validate the model on the test set)__
+```
+# Around 20% of data
+with torch.no_grad():              # Basically turn off backpropagation. We don't need in testing
+  y_eval = model.forward(X_test)     # X_test are features from our test set, y_eval will be predictions
+  loss = criterion(y_eval, y_test)   # Find the loss or error
+print(loss)
+```
+__The loss is not close. So we correct__
+```
+# How to network
+correct = 0
+with torch.no_grad():
+  for i, data in enumerate(X_test):
+    y_val = model.forward(data)
+
+    if y_test[i] == 0:
+      x = "Setosa"
+    elif y_test[i] == 1:
+      x = 'Versicolor'
+    else:
+      x = 'Virginica'
+
+    # Will tell us what type of flower class our network thinks it is
+    print(f'{i+1}.)  {str(y_val)} \t {y_test[i]} \t {y_val.argmax().item()}')
+
+    # Correct or not
+    if y_val.argmax().item() == y_test[i]:
+      correct +=1
+
+print(f'We got {correct} correct!')
+```
+
+```
+new_iris = torch.tensor([4.7, 3.2, 1.3, 0.2])
+```
+
+```
+with torch.no_grad():
+  print(model(new_iris))
+```
+
+newer_iris = torch.tensor([5.9, 3.0, 5.1, 1.8])
+
+with torch.no_grad():
+  print(model(newer_iris))
+
+torch.save(model.state_dict(), 'my_really_awesome_iris_model.pt')
+     
+__Load the Saved Model__
+new_model = Model()
+new_model.load_state_dict(torch.load('my_really_awesome_iris_model.pt'))
+
+__Make sure it loaded correctly__
+new_model.eval()
+     
