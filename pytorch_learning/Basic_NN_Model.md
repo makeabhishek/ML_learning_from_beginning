@@ -114,18 +114,21 @@ y_test = torch.LongTensor(y_test)
 ### (5) Initialize the Model, Loss Function, and Optimizer
 __Pick a manual seed for randomization__
 Manual seeding to keep random numbers the same.
+
 ```
 torch.manual_seed(41)
+
 # Create an instance of a model. The model needs to be instantiated so it can be used for both training and inference.
 model = Model()    # Turn ON all the Model
 ```
 
 __Set the criterion of the model to measure the error, how far off the predictions are from the data__ \
 
-```
-criterion = nn.CrossEntropyLoss()      # `nn.CrossEntropyLoss`: Used for multi-class classification problems. It combines `nn.LogSoftmax()` and `nn.NLLLoss()` in one single class.
+`nn.CrossEntropyLoss`: Used for multi-class classification problems. It combines `nn.LogSoftmax()` and `nn.NLLLoss()` in one single class. \
+Choose Adam Optimizer, lr = learning rate (if an error doesn't go down after a bunch of iterations (epochs), lower our learning rate). The optimizer is responsible for updating the model's parameters based on the gradients computed during backpropagation. Optimizers use the computed gradients to adjust the weights of the network to minimize the loss
 
-# Choose Adam Optimizer, lr = learning rate (if an error doesn't go down after a bunch of iterations (epochs), lower our learning rate). The optimizer is responsible for updating the model's parameters based on the gradients computed during backpropagation. Optimizers use the computed gradients to adjust the weights of the network to minimize the loss
+```
+criterion = nn.CrossEntropyLoss()      
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # An adaptive learning rate optimizer that often performs well across a wide range of problems.
 
