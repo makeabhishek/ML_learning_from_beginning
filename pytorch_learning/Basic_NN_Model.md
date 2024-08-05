@@ -1,8 +1,22 @@
+## Neural Network
 We will create a basic Neural Network (NN) Model and understand some terminologies.
 
 __What is a Neural network:__ A neural network is a machine learning method that employs interconnected _nodes_, or _neurons_, arranged in _layers_ to enable computers to process data similarly to the human brain. This approach, known as _deep learning_, is a subset of artificial intelligence. The figure shows an NN schematic with three input neurons, and two hidden layers, which are fully connected i.e., each neuron is connected with another neuron of the next layer, forward path, and output layer with one neuron.
 
 <img width="764" alt="image" src="https://github.com/user-attachments/assets/85c1bc50-7b6b-469c-a3e1-e59b9e17e1ad">
+
+Creating, training, and testing a neural network in PyTorch involves several key steps. Here's a high-level overview of the process:
+(1) Install PyTorch \
+(2) Import Libraries \
+(3) Define the Neural Network \
+(4) Prepare the Data \
+(5) Initialize the Model, Loss Function, and Optimizer \
+(6) Train the Model \
+(7) Test the Model \
+(8) Save and Load the Model (Optional) \
+
+### Example: 
+Predict Iris Species. Use multilayer perceptrons (Neural Network) to predict the species of the Iris dataset. \
 
 __Task:__ Write a code to create a NN, which takes the __input__, and __Forward__ it to __hidden layer__, then to next __hidden layer__ and finally gives __output__
 
