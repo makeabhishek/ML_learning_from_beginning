@@ -1,4 +1,4 @@
-__Object Oriented Programming (OOPs) Concepts:__
+## Object Oriented Programming (OOPs) Concepts:
 A class can be thought of as a piece of code that specifies the data and behaviour that represent and model a particular type of object. We can write a fully functional class to model the real world. These classes help to better organize the code and solve complex programming problems.
 
 - Class: 
@@ -23,3 +23,9 @@ For example, a 'Dog' is a real-world object with characteristics such as colour,
 In short, __attributes__ are variables, while methods are __functions__.
 
 __Inheritance:__ Inheritance is an important pillar of OOP. The capability of a class to derive properties and characteristics from another class is called Inheritance. When we write a class, we inherit properties from other classes. So when we create a class, we do not need to write all the properties and functions again and again, as these can be inherited from another class that possesses it. Inheritance allows the user to reuse the code whenever possible and reduce its redundancy.
+
+
+
+## Neural Network Example
+
+
