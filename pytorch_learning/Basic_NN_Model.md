@@ -24,7 +24,10 @@ __Dataset:__ IRIS dataset (https://archive.ics.uci.edu/dataset/53/iris)
 
 The dataset contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are not linearly separable from each other.
 
-__Import necessary packages__
+### (1) Setup
+Make sure PyTorch is installed.
+
+### (2) Import necessary packages or Libraries
 ```
 import torch
 import torch.nn as nn
@@ -37,14 +40,13 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 ```
 
-__Set Devices__
+#### (2.1) Set Devices
 ```
 device = torch.device('cuda' if torch.cuda.is_avaialble() else 'cpu')
 ```
 
-__Create a Fully connected network (FCN) layers__ \
-_Create a model class that inherits nn.Module_ \
-Create a class that defines the neural network. This involves inheriting from _nn.Module_ and implementing the __init__ and __forward__ methods.
+### (3) Define the Neural Network: 
+Create Fully connected network (FCN) layers. _Create a model class that inherits `nn.Module`_. Create a class that defines the neural network. This involves inheriting from _nn.Module_ and implementing the __init__ and __forward__ methods.
 ```
 class Model(nn.Module):                      # create a class that inherit nn.module
   # Input layer (4 features of the flower) -->
@@ -52,13 +54,14 @@ class Model(nn.Module):                      # create a class that inherit nn.mo
   # H2 (n) -->
   # output (3 classes of iris flowers)
 
-  def __init__(self, in_features=4, h1=8, h2=9, output_features=3): # initialising the model and pass input arguments. We consider 8 neurons in h1 and 9 neurons in h2 layer, out has 3 neurons as we have three output features,
+  def __init__(self, in_features=4, h1=8, h2=9, output_features=3):
+    # Initialize the layers of the neural network: initialising the model and passing input arguments. We consider 8 neurons in h1 and 9 neurons       in h2 layer, out has 3 neurons as we have three output features,
     super().__init__() # instantiate our nn.Module
     self.fc1 = nn.Linear(in_features, h1)    # fully connected layer 1, start from input features 'in_features' to hidden layer h1
     self.fc2 = nn.Linear(h1, h2)             # fully connected layer 2, start from hidden layer h1 and move to hidden layer h2
     self.out = nn.Linear(h2, out_features)   # moving from hidden layer h2 to output
 
-  # Now we have a basic model setup. We need a function that moves everything forward
+  # Now we have a basic model setup. We need a function that moves everything forward. Define the computation performed at every call. Apply layers and activation functions to the input data.
   def forward(self, x):
     x = F.relu(self.fc1(x))    # start with layer 1
     x = F.relu(self.fc2(x))    # move to layer 2
@@ -66,13 +69,8 @@ class Model(nn.Module):                      # create a class that inherit nn.mo
 
     return x    
 ```
-__Pick a manual seed for randomization__
-Manual seeding to keep random numbers the same.
-```
-torch.manual_seed(41)
-# Create an instance of a model
-model = Model()    # Turn ON all the Model
-```
+
+### (4). Prepare the Data: 
 __Load Data__
 ```
 url = 'https://gist.githubusercontent.com/netj/8836201/raw/6f9306ad21398ea43cba4f7d537619d0e07d5ae3/iris.csv'
@@ -113,16 +111,37 @@ y_train = torch.LongTensor(y_train)
 y_test = torch.LongTensor(y_test)
 ```
 
-__Set the criterion of the model to measure the error, how far off the predictions are from the data__
+### (5) Initialize the Model, Loss Function, and Optimizer
+__Pick a manual seed for randomization__
+Manual seeding to keep random numbers the same.
 ```
-criterion = nn.CrossEntropyLoss()      #
-# Choose Adam Optimizer, lr = learning rate (if an error doesn't go down after a bunch of iterations (epochs), lower our learning rate)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+torch.manual_seed(41)
+# Create an instance of a model. The model needs to be instantiated so it can be used for both training and inference.
+model = Model()    # Turn ON all the Model
+```
+
+__Set the criterion of the model to measure the error, how far off the predictions are from the data__ \
+
+```
+criterion = nn.CrossEntropyLoss()      # `nn.CrossEntropyLoss`: Used for multi-class classification problems. It combines `nn.LogSoftmax()` and `nn.NLLLoss()` in one single class.
+
+# Choose Adam Optimizer, lr = learning rate (if an error doesn't go down after a bunch of iterations (epochs), lower our learning rate). The optimizer is responsible for updating the model's parameters based on the gradients computed during backpropagation. Optimizers use the computed gradients to adjust the weights of the network to minimize the loss
+
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # An adaptive learning rate optimizer that often performs well across a wide range of problems.
 
 print(model.parameters)
 ```
 
-__Train the neural network (Model)__
+__Why Initialize model, loss and optimizer before training?__ \
+__Model Preparation:__ The model must be instantiated before training so that it can be used to make predictions and compute gradients.
+
+__Loss Calculation:__ The loss function must be defined to measure the model's performance during training, which provides the necessary information for updating the model's weights.
+
+__Parameter Optimization:__ The optimizer must be initialized with the model's parameters so it can adjust them to minimize the loss function.
+
+These components form the core of the __training loop__, where the model's weights are iteratively updated to improve its predictions. Initializing them at this point sets the stage for the training process, allowing you to iteratively optimize the model's performance.
+
+### (6) Train the Model (Neural network)
 ```
 # Epochs? (one run through all the training data in our network)
 epochs = 100
@@ -154,6 +173,7 @@ plt.ylabel("loss/error")
 plt.xlabel('Epoch')
 ```
 
+### (7) Test the Model
 __Evaluate Model on Test Data Set (validate the model on the test set)__
 ```
 # Around 20% of data
