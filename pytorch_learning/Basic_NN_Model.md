@@ -164,7 +164,10 @@ for i in range(epochs):
     print(f'Epoch: {i} and loss: {loss}')
 
   # Do some backpropagation: take the error rate of forward propagation and feed it back through the network to fine-tune the weights.
+  # Zero the parameter gradients
   optimizer.zero_grad()
+
+  # Backward pass and optimization
   loss.backward()
   optimizer.step()
 ```
