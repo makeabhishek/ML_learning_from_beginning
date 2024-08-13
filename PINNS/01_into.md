@@ -27,6 +27,10 @@ __(.) Boundary and Initial Condition Loss__: Enforces known conditions at the do
 PINNs leverage ``automatic differentiation``, which is a feature of many deep learning frameworks like TensorFlow and PyTorch. This allows for the calculation of 
 derivatives required by the PDEs and enables the network to be trained to satisfy these equations.
 
+### Summary
+The idea is very simple: add the known differential equations directly into the loss function when training the neural network. This is done by sampling a set of input training locations 
+(\{x_{j}\}) for 1D problem, (\{x_{j}, y_{j}\}) for 2D problem and passing them through the network. Next _gradients_ of the network’s output with respect to its input are computed at these locations. Finally, the residual of the underlying differential equation is computed using these gradients, and added as an extra term in the loss function. Note that the gradeints are typically analytically available for most neural networks, and can be easily computed using autodifferentiation.
+
 ### Advantages:
 __(.) Data Efficiency__: By incorporating physical knowledge, PINNs can often learn from fewer data points, as they are constrained by physics.
 
