@@ -11,7 +11,7 @@ Humans have to do the following task except task (5), which computers do. \
 (3) Characterize (objective) what makes a good solution: data preparation e.g., loss function.\
 (4) Find algorithm. e.g., Choose the best option that reduces the loss through optimization, based on steps 2 and 3. \
 (5) Run algorithm (only part done by computer) \
-(6) Validate results. \
+(6) Validate results. 
 
 
 ## AI - ML - DL - DS (or data analysis)
@@ -22,11 +22,11 @@ Humans have to do the following task except task (5), which computers do. \
 (2) Generalization: Future prediction, forecasting
 
 ## Classification of ML
-### (1) Supervised Learning \
+### (1) Supervised Learning
 Given some input and output data, we learn the mapping so that in future we can use this mapping function to predict the output for a given input. It is called supervised because we have given both questions and answers to the ML model.
 Example: \
 Image classification of different animals. \
-Binary classification, detecting tumour or not. \
+Binary classification, detecting tumour or not. 
 
 
 (i) Classification \
@@ -36,8 +36,8 @@ Test your data to classify online using (1) Teachable Machine for Image Classifi
 (ii) Regression \
 
 
-### (2) Unsupervised Learning \
+### (2) Unsupervised Learning 
 Learn from the data. No answers or labels to the data. For example, Amazon product suggestions.
 
-### (3) Reinforcement Learning \
+### (3) Reinforcement Learning 
 
