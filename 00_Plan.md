@@ -12,29 +12,29 @@ Here is the content: \
   Evaluating hypotheses - training set error \
   Learning algorithms 
  
-2: Perceptrons \
+2: Perceptrons
 
-3: Features \
+3: Features
 
-4: Margin Maximization \
+4: Margin Maximization
 
-5: Regression \
+5: Regression
 
-6: Neural Networks I \
+6: Neural Networks I
 
-7: Neural Networks II \
+7: Neural Networks II
 
-8: Convolutional Neural Networks \
+8: Convolutional Neural Networks
 
-9: State Machines and Markov Decision Processes \
+9: State Machines and Markov Decision Processes
 
-10: Reinforcement Learning \
+10: Reinforcement Learning
 
-11: Recurrent Neural Networks \
+11: Recurrent Neural Networks
 
-12: Recommender Systems \
+12: Recommender Systems
 
-13: Decision Trees and Nearest Neighbors \
+13: Decision Trees and Nearest Neighbors
 
  \
 \
