@@ -74,10 +74,10 @@ $Loss_{Physics} = \frac{1}{N} \sum_{i=1}^N (\frac{\partial^2u}{\partial t^2} - c
 where $N$ is the number of collocation points.
 
 __(3) Boundary Loss Calculation:__ This term enforces the free boundary condition at the edges of the domain. \
-$Loss_{boundary} = \frac{1}{N_b} \sum_{i=1}^N_b ((\frac{\artial u_j}{\partial n})^2)$
+$Loss_{boundary} = \frac{1}{N_{b}} \sum_{i=1}^{N_{b}} ((\frac{\partial {u_{j}}}{\partial {n}})^2)$
 
 __(4) Initial Condition Loss:__ If initial conditions are provided, they can also be included to improve convergence.
-$Loss_{initial} = \frac{1}{N_i} \sum_{i=1}^N_{i} (u_k(t=0) -  u_{initial,k})^2$
+$Loss_{initial} = \frac{1}{N_{i}} \sum_{i=1}^{N_{i}} (u_{k} (t=0) -  u_{initial,k})^2$
 
 __(5) Total Loss:__ The total loss is a weighted sum of the physics loss, boundary loss, and initial condition loss:
 
