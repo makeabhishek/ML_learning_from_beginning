@@ -20,7 +20,7 @@ This function $(f)$ that we are going to learn, here in this case a NN. So in be
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/da6670e7-2da7-43de-8ea4-732398d10edd">
 </p>
 
-In a SINDI model, the outputs that we are trying to predict are time derivative of some ssytem state $\dot{x}$, the architecture that we are parametrizing is a bunch of polynomials $(f_{\theta}(X))$ and ${\theta}$ are the weights, whcih combines with function to approximate our dynamics. \
+In a Sparse Identification of Nonlinera Dynamics (SINDy) model, the outputs that we are trying to predict are time derivative of some ssytem state $\dot{x}$, the architecture that we are parametrizing is a bunch of polynomials $(f_{\theta}(X))$ and ${\theta}$ are the weights, whcih combines with function to approximate our dynamics. \
 <p align="center">
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/78b61caf-fb72-43d1-9047-684f67a4803b">
 </p>
@@ -47,8 +47,11 @@ Good for image segmentation, super resolution. It has an structural inductive bi
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/fca05d4e-af73-4bc2-9a98-2eedf0fdfcb9">
 </p>
 
-### Physics informed NN 
-Here we are crafting a loss function. utilizing automatic differentiation capability of NN, we can calcululate the grdients.
+### Physics-Informed Neural Networks (PINNs) 
+PINNs are a class of deep learning models that incorporate physical laws, expressed as partial differential equations (PDEs), into the neural network training process. 
+The idea is to guide the network to learn solutions that are consistent with both the observed data and the governing physical equations.
+
+Here we are crafting a loss function. utilizing automatic differentiation capability of NN, we can calcululate the grdients to update the model.
 <p align="center">
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/f9cd53f1-6403-425d-aaeb-420f6cc57cf5">
 </p>
@@ -88,11 +91,81 @@ Equivariance:
 </p> 
 
 # (2) Loss Function
+Designing a loss function to assess the performance of the model.
+
+How can we add a loss to make a NN a physics informed loss funciton
+
+Lets assume, we are trying to predict some physical quantity such as wave velocity wavefield, which hav componenet in x,y, and z as u,v, w, respectively and pressure field. This wavefield vary in space (x,y, z) and time (t).
+
+A naive approach to solve such prolem would be to build a big feed forward NN, where inputs are spatial locations and output fields are the wavefield at these space and time locations. We can do it if we have large data.
+
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/b9002d25-5bb0-4bf1-b806-1b08e21c4398">
+</p> 
+
+In conventional NN, we have loss function in which the output of the loss function tries to match with the actual true data (e.g., velocity/pressure) of the data, and minimise it. In PINNS, we add additional loss term to satisfy governing equaiton and boundary condition. So that the NN also satisfy the physics.
+
+PINNS add a second loss function, because of the automatic differentiability of these modern machine learning environments, such as PyTorch, Jacks, tensorflow. We can take the output quantities of NN (u,v,w, p) and can compute their partial derivatives with respect to input of NN (space and time). So we can  build  all of these partial derivatives that went into the partial differential equation (PDE) that you think your system should be satisfying. Therefore, the additoonal an extra loss function here essentially says how much is the governing physical equation (the PDE that governs the physics), how accurate is it, how much is it violated on the data or on some virtual test points based on these purple quantities in the image. 
+
+Now the the downside is that by adding this physics as a term in the loss function is that you're never really going to exactly satisfy that this loss is zero. So an actual physical system an actual should be exactly zero. The loss sugges that term goes to zero but we're always going to have a balance between these loss functions so you're going to get something that's not perfectly physical. But still it's more physical than if you did not add it in NN.
+
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/38f64ac6-34b9-40bd-8239-65d892860d59">
+</p> 
+
+## Data loss
+$$
+\begin{align}
+\sum_{Data} ||\hat{u}(X_j) - u(X_j) ||_2^2
+\end{align}
+$$
+
+## Least squares (L-2 norm)
+to get model error
+$$
+\begin{align}
+L= || AX-b||_2 
+\end{align}
+$$
+
+## Ridge Regression (Tikhonov regularization)
+$$
+\begin{align}
+L= || AX-b||_2 + \alpha||X||_2
+\end{align}
+$$
+
+## LASSO
+L1 norm to promote sparsicty, parsimony to penalyse complexity
+$$
+\begin{align}
+L= || AX-b||_2 + \lambda||X||_1
+\end{align}
+$$
+
+## Elastic Net
+$$
+\begin{align}
+L= || AX-b||_2 + \alpha||X||_2 + \lambda||X||_1 \\
+\end{align}
+$$
+
+## Equivariance
+If we know we have symmetry or equivariance in our data, we can add an additional loss finction, instead of doubling our data. Adding more data will be more expensive to train the NN.
+
+$$
+\begin{align}
+|| y-f(X)||_2 + ||y-f(-X)||_2
+\end{align}
+$$
+$y-f(-X)$ means we have mirror reflection symmetry. However, we can add any kinfd of transformation can be added in the loss function. $y$ is the output, $X$ is the input and $f()$ is the NN.
+<img width="262" alt="image" src="https://github.com/user-attachments/assets/cd10dbc4-8b33-4d75-87b5-eb61436847c4">
+
+# (3) Optimization
+we can add constraints in the loss function and then solve it using constrinet optimization algorithms (e.g, KKT algorithm).
+
 
 ------------------------------------------------------------------------------------------------------------------
-### Physics-Informed Neural Networks (PINNs) 
-PINNs are a class of deep learning models that incorporate physical laws, expressed as partial differential equations (PDEs), into the neural network training process. 
-The idea is to guide the network to learn solutions that are consistent with both the observed data and the governing physical equations.
 
 ### Key Concepts of PINNs
 #### 1. Integration of Physics:
