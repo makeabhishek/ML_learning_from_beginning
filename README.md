@@ -12,5 +12,4 @@ __Machine learning is the process of building models from data using optimizatio
 
 Optimization (step 5) is used to tune the parameters of the NN architechture (step 3) to minimize loss funciton (step 4), averaged over training data (step 2).
 
-### Architecture tpes: \
-<img width="298" alt="image" src="https://github.com/user-attachments/assets/573bb493-9896-4d4c-9937-56f21afd4637">
+
