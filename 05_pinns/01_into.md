@@ -1,13 +1,95 @@
-## Fundamentals and powerful tools in Physics  laws
+# (0) Fundamentals and powerful tools in Physics  laws
 - Interpretability / genralizability
 - Parsimony / Simplicity
 - Symmetries / Invarainces / Conservation 
 
-## Neural network architecture
+# (1) Neural network architecture
 How can we either enforce or promote these ideas in our nural network architechture, and also how can we also discover these ideas. So we want to force our sytem to adhere to these ideas using constrint optimisation, boundary condition and loss fucntion.
 
-------------------------------------------------------------------------------------------------------------------
+## Parametrizing a space of functions
+There is a huge variety of classical as well as deep learning models are available in the ML community. At the end of the data ML model take inputs $(X)$ and tries to build some funciton $(f)$ that prdicts an output of interest $(y)$.
 
+$$
+\begin{align}
+y=f_{\theta}(X)
+\end{align}
+$$
+
+This function $(f)$ that we are going to learn, here in this case a NN. So in below figure input is $(X)$, output is $(y)$ and $(\theta)$ are all the parameters that we can tweek, for example the weights of the NN to tune/fit this function to get a best fit model i.e, y as a function of X. \
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/da6670e7-2da7-43de-8ea4-732398d10edd">
+</p>
+
+In a SINDI model, the outputs that we are trying to predict are time derivative of some ssytem state $\dot{x}$, the architecture that we are parametrizing is a bunch of polynomials $(f_{\theta}(X))$ and ${\theta}$ are the weights, whcih combines with function to approximate our dynamics. \
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/78b61caf-fb72-43d1-9047-684f67a4803b">
+</p>
+
+In all the architectures, NN's are trying to constrain space of pothis function to fit this datassible functions $f$, that describe the input output mapping through a choice of architecture. So, in all the cases the architecture is parameterized by free parameters $\theta$ and we're gonna optimize those parameters suign some loss function and optimization algorithm to tune the function to fit the data of the inputs and the outputs.
+
+In summary, acrhitetcure define a space of funtion we are searching over, and we find the funtion we want by tuning these free parameters $\theta$. These acrhitetcures are parameterizing funcitons and some paramterization are more useful for some kinds of physics than others. Som of these functions allow me to enforce symmetries, enforce conservation laws, promote parsimony and simplicity.
+
+## Different types of Architectures
+### Turbulence Modeling: Galilean Invaraince
+<p align="center">
+  <img width="278" alt="image" src="image" src="https://github.com/user-attachments/assets/2dce8766-0106-455a-bf25-5b3dd0b633a6">
+</p> 
+
+### Residual network (RESNET)
+RESNET is a depep NN with skip connections. This architecture is designed approximately so that the function of the block behaves like and Euler Integrator or numerical integrator. Good for time stepping data.
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/79a01a88-83e4-4d35-9908-5d8cbcf3d6d6">
+</p> 
+
+### U-NET
+Good for image segmentation, super resolution. It has an structural inductive bias, which tellss that the things we observed in our daily life is multi-scale in space, whcih is kind of built implicitly in this architecture. This ig good in parametrizing things in natural images.
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/fca05d4e-af73-4bc2-9a98-2eedf0fdfcb9">
+</p>
+
+### Physics informed NN 
+Here we are crafting a loss function. utilizing automatic differentiation capability of NN, we can calcululate the grdients.
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/f9cd53f1-6403-425d-aaeb-420f6cc57cf5">
+</p>
+
+### Lagrangian NN
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/3a26c06d-c63b-4836-8f09-e4095472673c">
+</p> 
+
+### Deep Operator Network
+Often have custm architecture to use less datafor training.
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/2ab7551b-405f-4591-a791-9087ba81c7e5">
+</p> 
+
+### Fourier Neural operator
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/ff3bd5f0-90d4-444b-960c-9f4ea61b336a">
+</p> 
+
+### Graph Neural network
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/d132d2cc-ad73-42ed-b2ba-d585214891cf">
+</p> 
+
+## Symmetry, Invariance, and Equivariance
+We want our models to satisfy some of these properties.
+
+Invariance : Output doesnt change with any transformation.
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/7a031b80-c09d-4445-849d-0e62143e2e1c">
+</p> 
+
+Equivariance:
+<p align="center">
+  <img width="278" alt="image" src="https://github.com/user-attachments/assets/91e5c86b-fb41-46c7-8339-900fee89ecfd">
+</p> 
+
+# (2) Loss Function
+
+------------------------------------------------------------------------------------------------------------------
 ### Physics-Informed Neural Networks (PINNs) 
 PINNs are a class of deep learning models that incorporate physical laws, expressed as partial differential equations (PDEs), into the neural network training process. 
 The idea is to guide the network to learn solutions that are consistent with both the observed data and the governing physical equations.
@@ -79,23 +161,49 @@ $u(x,y,t)$ is the wave field (e.g., displacement or pressure); $c$ is the speed 
 The physics loss is designed to penalize deviations from the wave equation. It can be formulated using the ``automatic differentiation`` capabilities of deep learning frameworks to
 compute the necessary derivatives. The loss can be expressed as follows:
 
-__(1) Residual Definition__: First, deine the residual $R(x,y,t)$ of the wave equation: \
-$R(x,y,t) = \frac{\partial^2u}{\partial t^2} - c^2 (\frac{\partial^2u}{\partial x^2} + \frac{\partial^2u}{\partial y^2})$
+__(1) Residual Definition__: First, deine the residual $R(x,y,t)$ of the wave equation: 
 
-__(2) Physics Loss Calculation:__ The physics loss is then the mean squared error of the residual over a set of collocation points. This term ensures the solution satisfies the wave equation within the domain. \
-$Loss_{Physics} = \frac{1}{N} \sum_{i=1}^N (R(x_i,y_i,t_i))^2$, \
-$Loss_{Physics} = \frac{1}{N} \sum_{i=1}^N (\frac{\partial^2u}{\partial t^2} - c^2 (\frac{\partial^2u}{\partial x^2} + \frac{\partial^2u}{\partial y^2}))^2$ \
+$$
+\begin{align}
+R(x,y,t) = \frac{\partial^2u}{\partial t^2} - c^2 (\frac{\partial^2u}{\partial x^2} + \frac{\partial^2u}{\partial y^2})
+\end{align}
+$$
+
+__(2) Physics Loss Calculation:__ The physics loss is then the mean squared error of the residual over a set of collocation points. This term ensures the solution satisfies the wave equation within the domain. 
+
+$$
+\begin{align}
+Loss_{Physics} &= \frac{1}{N} \sum_{i=1}^N (R(x_i,y_i,t_i))^2 \\
+Loss_{Physics} &= \frac{1}{N} \sum_{i=1}^N (\frac{\partial^2u}{\partial t^2} - c^2 (\frac{\partial^2u}{\partial x^2} + \frac{\partial^2u}{\partial y^2}))^2
+\end{align}
+$$
+
 where $N$ is the number of collocation points.
 
-__(3) Boundary Loss Calculation:__ This term enforces the free boundary condition at the edges of the domain. \
-$Loss_{boundary} = \frac{1}{N_{b}} \sum_{i=1}^{N_{b}} ((\frac{\partial {u_{j}}}{\partial {n}})^2)$
+__(3) Boundary Loss Calculation:__ This term enforces the free boundary condition at the edges of the domain. 
+
+$$
+\begin{align}
+Loss_{boundary} = \frac{1}{N_{b}} \sum_{i=1}^{N_{b}} ((\frac{\partial {u_{j}}}{\partial {n}})^2)
+\end{align}
+$$
 
 __(4) Initial Condition Loss:__ If initial conditions are provided, they can also be included to improve convergence.
-$Loss_{initial} = \frac{1}{N_{i}} \sum_{i=1}^{N_{i}} (u_{k} (t=0) -  u_{initial,k})^2$
+
+$$
+\begin{align}
+Loss_{initial} = \frac{1}{N_{i}} \sum_{i=1}^{N_{i}} (u_{k} (t=0) -  u_{initial,k})^2
+\end{align}
+$$
 
 __(5) Total Loss:__ The total loss is a weighted sum of the physics loss, boundary loss, and initial condition loss:
 
-$Loss_{total} = \alpha \cdot Loss_{physics} + \beta \cdot Loss_{boundary} + \gamma \cdot Loss_{initial}$ \
+$$
+\begin{align}
+Loss_{total} = \alpha \cdot Loss_{physics} + \beta \cdot Loss_{boundary} + \gamma \cdot Loss_{initial}
+\end{align}
+$$
+
 where, $\alpha$, $\beta$, $\gamma$ are weights that can be adjusted to balance the different components of the loss.
 
 
@@ -118,5 +226,10 @@ __(.) Boundary Condition Loss__: Ensures the model respects given boundary condi
 
 
 
+
+------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
+__References:__
+1. Brunton, Steven L., and J. Nathan Kutz. Data-driven science and engineering: Machine learning, dynamical systems, and control. Cambridge University Press, 2022.
 
 
