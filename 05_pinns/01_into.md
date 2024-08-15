@@ -135,7 +135,7 @@ L= || AX-b||_2 + \alpha||X||_2
 \end{align}
 $$
 
-## LASSO
+## LASSO (Least Absolute Shrinkage and Selection Operator)
 L1 norm to promote sparsicty, parsimony to penalyse complexity
 $$
 \begin{align}
@@ -159,11 +159,20 @@ $$
 \end{align}
 $$
 $y-f(-X)$ means we have mirror reflection symmetry. However, we can add any kinfd of transformation can be added in the loss function. $y$ is the output, $X$ is the input and $f()$ is the NN.
+
 <img width="262" alt="image" src="https://github.com/user-attachments/assets/cd10dbc4-8b33-4d75-87b5-eb61436847c4">
 
 # (3) Optimization
 we can add constraints in the loss function and then solve it using constrinet optimization algorithms (e.g, KKT algorithm).
 
+If we are just adding loss function, we are not exactly satisfying constraints. however, if we modify the optimization to constraint optimisation, we are exactly satisfying the constraint. We can add submanifold constraint or subspace constraints.
+<img width="561" alt="image" src="https://github.com/user-attachments/assets/e922b9ba-1f7c-41c2-8dc8-789b8c2a4900">
+
+We can also use genetic algorithm, symbolic regression (eg. PYSR) as an optimization algorithm designed to find the right model.
+
+Sometimes, we need custom optimization algorithm for custom loss term in the loss function.
+
+------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------------
 
