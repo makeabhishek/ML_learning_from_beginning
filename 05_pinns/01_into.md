@@ -6,6 +6,9 @@
 # (1) Neural network architecture
 How can we either enforce or promote these ideas in our nural network architechture, and also how can we also discover these ideas. So we want to force our sytem to adhere to these ideas using constrint optimisation, boundary condition and loss fucntion.
 
+__Architecture Types__
+<img width="298" alt="image" src="https://github.com/user-attachments/assets/573bb493-9896-4d4c-9937-56f21afd4637">
+
 ## Parametrizing a space of functions
 There is a huge variety of classical as well as deep learning models are available in the ML community. At the end of the data ML model take inputs $(X)$ and tries to build some funciton $(f)$ that prdicts an output of interest $(y)$.
 
