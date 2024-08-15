@@ -1,3 +1,13 @@
+## Fundamentals and powerful tools in Physics  laws
+- Interpretability / genralizability
+- Parsimony / Simplicity
+- Symmetries / Invarainces / Conservation 
+
+## Neural network architecture
+How can we either enforce or promote these ideas in our nural network architechture, and also how can we also discover these ideas. So we want to force our sytem to adhere to these ideas using constrint optimisation, boundary condition and loss fucntion.
+
+------------------------------------------------------------------------------------------------------------------
+
 ### Physics-Informed Neural Networks (PINNs) 
 PINNs are a class of deep learning models that incorporate physical laws, expressed as partial differential equations (PDEs), into the neural network training process. 
 The idea is to guide the network to learn solutions that are consistent with both the observed data and the governing physical equations.
@@ -105,6 +115,7 @@ __(.) Data Loss__: Ensures the model fits available data.
 __(.) Physics Loss__: Penalizes deviations from the wave equation.
 
 __(.) Boundary Condition Loss__: Ensures the model respects given boundary conditions.
+
 
 
 
