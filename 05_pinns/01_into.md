@@ -61,6 +61,8 @@ Here we are crafting a loss function. utilizing the automatic differentiation ca
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/f9cd53f1-6403-425d-aaeb-420f6cc57cf5">
 </p>
 
+![image](https://github.com/user-attachments/assets/b83c77be-27cb-4ff8-8541-e85b23bf66da)
+
 ### Lagrangian NN
 <p align="center">
   <img width="278" alt="image" src="https://github.com/user-attachments/assets/3a26c06d-c63b-4836-8f09-e4095472673c">
