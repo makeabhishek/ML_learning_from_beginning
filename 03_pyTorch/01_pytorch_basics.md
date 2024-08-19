@@ -32,11 +32,21 @@ We should consider to learn
 2.	Automatic differentiation (AD): Compiled computational graph. We use AD, which is a modular way of computing automatic differentiation. We do it either by compiling computational graph or we use dynamical computational graph. PyTorch uses dynamical computational graph is faster and dynamically changing the graph instead of using single graph for everything.
 3.	PyTorch Ecosystem: Tochvision, torchtext, torchaudio.Parallel computing, model deployement.
 
-
 ## 2. Tensor Basics
-•	Tensors can run on GPU’s unlike numPy array. \
-__Tensor initialization:__ Tensor can have any dimension i.e, 1D, 2D, nD \
-•	From numpy: convert using ```torch.Tensor()``` \
+- Tensors can run on GPU’s unlike numPy array. \
+
+### Tensor Initialization
+Before we write the code in PyTorch, lets look how can we initialise the tensors. Here I show four different ways to initilise tensor. Tensor can have any dimension i.e, 1D, 2D, nD. We can initilise the tensor in cpu or gpu, we can initlise based on data type, for example `float`, `long`
+- From Numpy: convert using `torch.Tensor` 
+- Using torch.Tensor(). we can create a list or list of list or dictionary of list.
+- Using random
+- Using zeros_like and Ones_like
+
+- Tensors are a core PyTorch data type similar to a multidimensional array (like in Numpy). For example the image shown below can be represented in RGB channel with width and height. The tensore representaion of this image can be written as [3, 224, 224].
+- Use for representing data in numerical way
+- Tensors can run on GPUs unlike Numpy's array
+
+<img width="1000" alt="image" src="https://github.com/user-attachments/assets/6c1c1668-a8d7-4b75-8a03-974f6f971a1b">
 
 **Create an empty tensor** \
 Notice the size of tensors in the output
@@ -104,6 +114,16 @@ y[0]        # extract elemtn from 1st axis
 z = torch.ones((2,3,4))
 print(z)
 ```
+
+### Tensor manipulation
+Once we initilise the tensor we can perform differnt type of manipulations on tensors. It can be in three different ways,
+- Element-wise operations: if we have two tensor `a` and `b` we can multiply them `a*b`
+- Functional operations: we can use pytorch function like `torch.matmul`, `torch.nn.functional.relu`
+- Modular operations: this is a object oriented way of performing same functional operations. For example, if we want to pass an image as a convolutional filter then we can create a module for conv filter. That module can be used to perform filtering, whcih comes an output of that module.
+
+__Why need to worry about tensor manipulation__
+The reason to consider a particular tensor manipulation is important because of __computational graph__. \
+Often when we talk about deep learning or neural networks, we need to optimize for the __weights__ and __biases__ using __forward__ and __backward propagation__. When we perform forward and backward propagation, we need to get __gradient__. To obtain the gradients we need to store a record of different tensors and different operations that we have performed using directed acyclic graph (DAG).
 
 **Check tensor data type and modify it**
 ```
@@ -202,13 +222,33 @@ A =  X.numpy()                # tensor to numpy
 B = torch.from_numpy(A)       # tensor from numpy
 type(A), type(B)
 ```
-__Tensor Manipulation__ \
-•	Element wise operation: every element of $a$ is multiply by $b$ \
-•	Functional operations ```torch.mul()``` \
-•	Modular operations: object orientated way of performing functional operations \
-
 
 ## 3. Gradinet Calculation with autograd
+### Computational Graph
+- NN optimize weights and biases using forward and backward propagation.
+- Deep learnign graphs record tensors and operations in directed acyclic graph (DAG). An example of DAG  is shown in the figure below, where `x`, and `y` are input tensors, which goes into multiplication operation, gives `v`, whcih is then passed to `log`, gives `w`. here multiplication is an element-wise operation, then `log` is a functional oeration. \
+In tensorflow these graphs are compiled apriori to start of DL or NN training, whereas,
+- PyTorch uses dynamic graphs, built at runtime for efficiency. So because of dynamic graph code actually becomes the graph.
+- In the graph, nodes represent operations (functions) and edges represents the tensors.
+![image](https://github.com/user-attachments/assets/cffe0ab3-0374-4968-aec7-d93a348ceef1)
+
+- Computational graphs are useful in creating `Autograd`. The way it is done that once we build the graph dynamically during tensor operation and recorded all the dependencies. We can now use this dynamic computation graph to compute the gradients for the tensors by travelling in the graph in backward direction. This is performed using __Chain Rule__. Once we compute the backward propagation using chain rule, we get the gradients and once we have have the gradients, the optimization of parameters during model training can go.
+
+### Autograd
+- Automatic differentiation library that facilitates the computation of gradients for tensor operations.
+- Dynamic Computational Graph: Builds graph dynamically during tensor operations, recording dependencies. Backward Propagation: Traverses graph backward to compute gradients for tensors
+- Gradient Calculation: Computes gradients efficiently, optimizing parameters during model training.
+- Ease of Use: Simplifies training loops, automating gradient computation for developers.
+
+**Autograd Example**
+Here is an example, how forward anf backward pass works. \
+We can compute $\frac{\partial w}{\partial v}$, which is a log derivative. Once we have log derivative, we can compute $\frac{\partial w}{\partial x}$ and $\frac{\partial w}{\partial y}$, whcih is mult derivative, as long as we knwo the way to compute the derivative for multiplication operation.
+
+![image](https://github.com/user-attachments/assets/8d31c817-8b02-47e2-936c-3e7f251f1c67)
+
+In summary,
+
+![image](https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264)
 
 ## 4. Backpropagation 
 
