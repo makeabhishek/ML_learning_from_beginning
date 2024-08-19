@@ -155,7 +155,15 @@ print(x.size())
 torch.tensor([[2,1,4,3],[1,2,3,4],[4,3,2,1]])
 ```
 
-**Element wise operations** 
+**Element wise  operations** 
+```
+x = torch.tensor([1.0, 2, 4, 8])
+y = torch.tensor([2, 2, 2, 2])
+z = torch.matmul(x,y)
+torch.exp(x)
+```
+
+**Functional operations** 
 ```
 # multiply two vectors and check the size
 tensor1 = torch.randn(3)
@@ -163,13 +171,7 @@ tensor2 = torch.randn(3)
 torch.matmul(tensor1, tensor2).size()
 ```
 
-**Functional operations** 
-```
-x = torch.tensor([1.0, 2, 4, 8])
-y = torch.tensor([2, 2, 2, 2])
-z = torch.matmul(x,y)
-torch.exp(x)
-```
+
 
 **Concatenate tensor** 
 ```
