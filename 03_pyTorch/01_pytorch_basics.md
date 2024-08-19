@@ -224,7 +224,14 @@ type(A), type(B)
 ```
 
 ## 3. Gradinet Calculation with autograd
+Differentiation is a crucial step in nearly all machine learning and deep learning optimization algorithms. While the calculations for taking these derivatives are straightforward, working out the updates by hand can be a tedious task. We will get a conceptual understanding of 
+how __autograd__ works to find the __gradient__ of multivariable functions. \
+We will discuss some fundamentals on _derivatives_, _partial derivatives_, _gradients_, and _Jacobians_. We then discuss how to compute _gradients_ using ```requires_grad=True``` and the ```backward()``` method. 
+Thus, we cover ```classes``` and ```functions``` implementing __automatic differentiation__ of arbitrary scalar-valued and non-scalar-valued functions. We also discuss the _Jacobian matrix_ in PyTorch. 
+
 ### Computational Graph
+We discussed in above section, how computational graphs are generated in PyTorch.
+
 - NN optimize weights and biases using forward and backward propagation.
 - Deep learnign graphs record tensors and operations in directed acyclic graph (DAG). An example of DAG  is shown in the figure below, where `x`, and `y` are input tensors, which goes into multiplication operation, gives `v`, whcih is then passed to `log`, gives `w`. here multiplication is an element-wise operation, then `log` is a functional oeration. \
 In tensorflow these graphs are compiled apriori to start of DL or NN training, whereas,
@@ -234,7 +241,7 @@ In tensorflow these graphs are compiled apriori to start of DL or NN training, w
 
 - Computational graphs are useful in creating `Autograd`. The way it is done that once we build the graph dynamically during tensor operation and recorded all the dependencies. We can now use this dynamic computation graph to compute the gradients for the tensors by travelling in the graph in backward direction. This is performed using __Chain Rule__. Once we compute the backward propagation using chain rule, we get the gradients and once we have have the gradients, the optimization of parameters during model training can go.
 
-### Autograd
+### Autograd and Backpropagation
 - Automatic differentiation library that facilitates the computation of gradients for tensor operations.
 - Dynamic Computational Graph: Builds graph dynamically during tensor operations, recording dependencies. Backward Propagation: Traverses graph backward to compute gradients for tensors
 - Gradient Calculation: Computes gradients efficiently, optimizing parameters during model training.
@@ -250,9 +257,7 @@ In summary,
 
 ![image](https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264)
 
-## 4. Backpropagation 
-
-## 5. Gradient Descent with Autograd
+## 4. Gradient Descent with Autograd
 
 
 
@@ -262,7 +267,7 @@ In summary,
 
 
 
-
+## classes 
 If you define a function inside a class, it’s called a __method__. Methods are used by instances of a class.
 
 ```
