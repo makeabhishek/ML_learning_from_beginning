@@ -8,6 +8,8 @@ Activate environment: ```conda activate learnpytorch``` \
 Install pip for the environment: ```conda install pip``` \
 Install PyTorch in the environment from pytorch website (https://pytorch.org/get-started/locally/): ```pip3 install torch torchvision torchaudio```
 
+check installed environments `conda env list`
+
 **Launch python shell to test pyTorch** \
 ```python``` \
 **Import pytorch** \
