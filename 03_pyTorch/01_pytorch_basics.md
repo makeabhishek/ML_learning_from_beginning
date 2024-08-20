@@ -307,10 +307,10 @@ In tensorflow these graphs are compiled apriori to start of DL or NN training, w
 ### Graph Visualization
 - Different ways to visualize the model
 - Simple way is to call `print(model)`
-        - Quick summary but lacks the pictorial visual \
+        - Quick summary but lacks the pictorial visual. Cant tell whats the input, output of model size, how to interpret model layers. \
         - Not suitable for deep networks 
 - Some other options are: \
-        - Torchviz \
+        - Torchviz: It uses graph based visualization. Gives all the operations performed in PyTorch.  \
         - Tensorboard
 - Let’s consider small network with 3 fully-connected layers
  ```
@@ -367,11 +367,15 @@ In summary,
 <img alt="image" src="https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264" width=80% height=80%>
 
 ## 4. PyTorch Hooks
+To debug what happen in forward pass and backward pass. Understand the model internal states. How to keep track of them. 
 - PyTorch hooks are functions attached to tensors and modules (layers).
 - They allow modification or inspection of outputs and gradients.
 - Hooks work during both forward and backward passes.
 - They provide a powerful way to interact with the model's internal states.
 - Useful for debugging, visualizing, and modifying network behavior during training.
+
+_For example:_ let's we have a linear layer and we want to know the input and output of the linear layer and how is this model performing in between. We can create a hook. If we want only input layer we can create forward hook before the layer is executed, and we can always use another hook after the layer is executed. There is a pre and post hooks and forward and backward hook. These four hook helps us in visualizeing and debugging.
+
 - Two types of hooks in PyTorch
 - __Forward Hooks:__ \
         - Forward hooks are triggered during the forward pass. \
