@@ -32,8 +32,10 @@ Example of FashionMNIST dataset available in PyTorch
 ### Custom Datset
 - A custom Dataset class must implement three functions:
     - __init__() class (it almost used in any class creating in Python)
+        - __init__ method in Python is used to initialize objects of a class. It is also called a constructor. Constructors are used to initialize the object’s state. The task of constructors is to initialize(assign values) to the data members of the class when an object of the class is created
         - This function is run once when instantiating the Dataset object
         - We initialize the directory containing the images, the annotations file, and both transforms
+        - The method is useful to do any initialization you want to do with your object.
     - __len__()
         - The __len__ function returns the number of samples in our dataset.
     - __getitem__()
@@ -42,6 +44,11 @@ Example of FashionMNIST dataset available in PyTorch
 
 The advantage of using datset class instead of loading whole dataset in one go and goinfg forward. When we use dataset class, it can scale for very large datasets like Imagenet (around 14 million images). So we can not load full images in our dataset. We have to load small amount of  data.
 Custom dataset aloows to load tht datasets on the fly while using __getitem__() method. So instead of loading all the datasets, we can load the metadata in the __init__() class and using the metadata, whenever an index is send to __getitem__(). It can load the data and retrun it.
+
+__Example__
+```
+
+```
 
 ### Dataloaders
 Dataloader create different batches of datasets and each of these batches are used for minibatch stochastic gradient descent (below Figure). Once all the batches are iterated it completes one epoch. Then dataloader shuffle the data to create another batches and so on ...
