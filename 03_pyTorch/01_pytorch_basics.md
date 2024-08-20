@@ -298,11 +298,57 @@ We discussed in above section, how computational graphs are generated in PyTorch
 - Deep learnign graphs record tensors and operations in directed acyclic graph (DAG). An example of DAG  is shown in the figure below, where `x`, and `y` are input tensors, which goes into multiplication operation, gives `v`, whcih is then passed to `log`, gives `w`. here multiplication is an element-wise operation, then `log` is a functional oeration. \
 In tensorflow these graphs are compiled apriori to start of DL or NN training, whereas,
 - PyTorch uses dynamic graphs, built at runtime for efficiency. So because of dynamic graph code actually becomes the graph.
-- In the graph, nodes represent operations (functions) and edges represents the tensors.
+- In the graph, nodes represent operations (functions) and edges represents the tensors. $x,y,v,w$ are nodes in the computational graph. multiplication and log are the operators.
 
 <img alt="image" src="https://github.com/user-attachments/assets/cffe0ab3-0374-4968-aec7-d93a348ceef1" width=50% height=50%>
 
 - Computational graphs are useful in creating `Autograd`. The way it is done that once we build the graph dynamically during tensor operation and recorded all the dependencies. We can now use this dynamic computation graph to compute the gradients for the tensors by travelling in the graph in backward direction. This is performed using __Chain Rule__. Once we compute the backward propagation using chain rule, we get the gradients and once we have have the gradients, the optimization of parameters during model training can go.
+
+### Graph Visualization
+- Different ways to visualize the model
+- Simple way is to call `print(model)`
+        - Quick summary but lacks the pictorial visual \
+        - Not suitable for deep networks 
+- Some other options are: \
+        - Torchviz \
+        - Tensorboard
+- Let’s consider small network with 3 fully-connected layers
+ ```
+        - input = nn.Linear(in_features=4, out_features=16)
+        - hidden_1 = nn.Linear(in_features=16, out_features=16)
+        - output = nn.Linear(in_features=16, out_features=3)
+ ```
+
+#### Torchviz
+__pip install torchviz__
+
+```
+from torchviz import make_dot
+
+model = Net()
+y=model(X)
+
+make_dot(y.mean(), params=dict(model.named_parameters()))
+```
+<img width="370" alt="image" src="https://github.com/user-attachments/assets/a0b00375-8236-412c-ae50-84d06ce18f79"> \
+Graph Visualization using torch viz for a small network
+
+#### Tensorboard
+__pip install tensorboard__
+```
+from torch.utils.tensorboard import SummaryWriter
+
+writer = SummaryWriter("torchlogs/")
+model = Net()
+writer.add_graph(model, X)
+writer.close()
+
+cd <path-to-logs-dir>
+tensorboard --logdir=./
+```
+
+<img width="752" alt="image" src="https://github.com/user-attachments/assets/c8eba878-aa1a-4f99-8a3c-9e21c43e8599"> \
+Graph Visualization using tensorboard for a small network
 
 ### Autograd and Backpropagation
 - Automatic differentiation library that facilitates the computation of gradients for tensor operations.
@@ -320,7 +366,27 @@ In summary,
 
 <img alt="image" src="https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264" width=80% height=80%>
 
-## 4. Gradient Descent with Autograd
+## 4. PyTorch Hooks
+- PyTorch hooks are functions attached to tensors and modules (layers).
+- They allow modification or inspection of outputs and gradients.
+- Hooks work during both forward and backward passes.
+- They provide a powerful way to interact with the model's internal states.
+- Useful for debugging, visualizing, and modifying network behavior during training.
+- Two types of hooks in PyTorch
+- __Forward Hooks:__ \
+        - Forward hooks are triggered during the forward pass. \
+        - Activated after the module's forward method is called. \
+        - Allow inspection or modification of a layer's output.
+- __Backward Hooks:__ \
+        - Backward hooks are triggered during the backward pass. \
+        - Activated when gradients are being computed. \
+        - Allow inspection or modification of gradients for a tensor or layer.
+
+
+<img width="825" alt="image" src="https://github.com/user-attachments/assets/c2bfeac8-7275-4588-8496-26ada91b1350"> \
+The 96 filters learned in the first convolution layer in AlexNet.
+
+## 5. Gradient Descent with Autograd
 __Exercise__
 _Problem Statement:_  Simple linear regression using gradeint descent.  \
 The problem statement is using pytorch tensors to build a simple linear regression model with basic gradient descent. So that we know whats going on under the hood.
