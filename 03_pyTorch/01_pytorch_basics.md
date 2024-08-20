@@ -50,6 +50,12 @@ Before we write the code in PyTorch, lets look how can we initialise the tensors
 
 <img width="1000" alt="image" src="https://github.com/user-attachments/assets/6c1c1668-a8d7-4b75-8a03-974f6f971a1b">
 
+**Help in Pytorch**
+Always good to chekc the arguments in a function
+```
+help(torch.randint)
+```
+
 **Create an empty tensor** \
 Notice the size of tensors in the output
 ```
@@ -75,6 +81,13 @@ tensor([[[0., 0., 0.],
         [[0., 0., 0.],
          [0., 0., 0.]]])
 ```
+
+**Create an empty tensor** \
+```
+# Create tensor ifrom list
+a = torch.Tensor([0.1, 0.2, 0.1, 0.4, 155])
+```
+
 **Genrate numbers or tensors**
 ```
 x= torch.arange(12)
@@ -86,15 +99,32 @@ print(x.shape)         # we dont use () because its a property not a function
 # Check the number off elements in 
 x.numel()        # total number of elements in one axis
 ```
+
 **Generate random numbers** 
 ```
 x = torch.rand(2,2)
 print(x)
 ```
+
 **Generate random numbers with noraml distribution, which foloow standard Gaussian Distribution with mean 0 and STD 1** 
 ```
-torch.randn(3,4)
+torch.randn(3,4) # or
+b = torch.randn(size=(128,128))
+print(b)
+
+# Check size, max elemt, min element of b
+b.size(); print('size of b is:', b)
+b.max(); print('Maximum value in Tensor b is:', b)
+b.min(); print('Minimum value in Tensor b is:', b)
+
+# define datatyep while generating random number
+c  = torch.randn(size=(128,128), dtype=torch.float64)
+c  = torch.randn(size=(128,128), dtype=torch.intt64) #  Why giving error: because randn and int cannot go together to follow the ditribution
+
+d =  torch.randint(high=100, size=(128,128), dtype=toch.int64) # high is the maximum value of number in the tensor
+print(d)
 ```
+
 **Using zeros and Ones**
 ```
 >>> x = torch.zeros(2,2)
@@ -173,8 +203,6 @@ tensor2 = torch.randn(3)
 torch.matmul(tensor1, tensor2).size()
 ```
 
-
-
 **Concatenate tensor** 
 ```
 X = torch.arange(12, dtype=torch.flat32).reshape((3,4))
@@ -185,6 +213,7 @@ X.shape, Y.shape
 torch.cat((X,Y),dim=0) # Concatenate in y direction or column wise
 torch.cat((X,Y),dim=1) # Concatenate in x direction or column wise
 ```
+
 **Other operations**
 ```
 X.sum()         # Summing all the elements in the tensor yields a tensor with only one element
@@ -234,6 +263,26 @@ print('id(X):', id(X)) # now we will have different memory
 A =  X.numpy()                # tensor to numpy
 B = torch.from_numpy(A)       # tensor from numpy
 type(A), type(B)
+
+c = np.arange(100).reshape(25,4)
+d =  torch.from_numpy(c)
+print(d.type)
+print(d.dtype)
+
+# convert to long datatype i.e., 64 bit integer
+e = torch.LongTensor(d)
+e.dtype
+
+# convert to float tensor
+f = torch.FloatTensor(d+0.1) # adding 0.1 to hav ein the float.
+f.dtype
+
+# convert to double tensor i.e., 
+g = torch.DoubletTensor(d.astype()Torch.Float64)+0.1) #  Why this error 
+g.dtype
+
+g = d.type(torch.float64)
+g.dtype
 ```
 
 ## 3. Gradinet Calculation with autograd
@@ -271,11 +320,78 @@ In summary,
 ![image](https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264)
 
 ## 4. Gradient Descent with Autograd
+__Exercise__
+_Problem Statement:_  Simple linear regression using gradeint descent.  \
+The problem statement is using pytorch tensors to build a simple linear regression model with basic gradient descent. So that we know whats going on under the hood.
+- Initializing weights and biases randomly `w` and `b` with `1` and `0`, as intial guess to fit the line `y = 2.25*x + 1.25`, i.e, `y =w*x + c`.
+- So from inital guess of `1` and `0` we are moving towards `2.25` and `1.25`.
+- Use concepts of Deep learnign to perform this task. Compute the gradients of `w` and `b`
+- Define the objective function of compute the loss, `L`. Loss is basically the objective function. Use Means square loss (MSE) ` torch.nn.functional.mse_loss(y_pred,y)`.
+- Compute gradeitn of `L` $\frac{\partial L}{\partial w}$, once we compute this, we can do gradient descent,
+- $w = w - \alpha \frac{\partial L}{\partial w}$ This is a gradeint descent step.
+- Similarly for `b`
+
+Snippet to gradient descent \
+![image](https://github.com/user-attachments/assets/04ba7516-51f3-4788-a89c-674dc5e5e27d)
 
 
+```
+import torch
 
+# w = torch.Tensor([1.0], requires_grad = True) # this will give error
+w = torch.Tensor([1.0])
+w.requires_grad = True
+w.type(torch.float64)
 
+b = torch.Tensor([0.0])
+b.requires_grad = True
+b.type(torch.float64)
 
+# creat some x values
+x = torch.Tensor([f*0.0001 for f in range(100000)])
+x.type(torch.float64)
+
+# create a line with slope 2.25 and intercept 1.25. 
+y = 2.25*x + 1.25
+
+# -------------------------------------------------------#
+# Do some prediction 
+# y_pred = w*x + b; loss = torch.nn.functional.mse_loss(y_pred,y) # MSE loss between y_pred and y
+# loss.backward()
+# See some gradeint values
+# w.grad
+# b.grad
+# w = w - 0.01*w.grad # 0.01 is the learning rate
+# b = b - 0.01*b.grad
+# w
+# -------------------------------------------------------#
+
+# Perform above prcedure in for loop
+# TASK: change number of iterations and learning rate to see the target value of 2.25 1.25. play with this to reach to them.
+num_iter = 500000
+for iter in range(num_iter):
+        print(iter)
+        var_w = torch.autograd.Variable(w,requires_grad=True)
+        var_b = torch.autograd.Variable(b,requires_grad=True)
+        y_pred = var_w*x + var_b
+        loss = torch.nn.functional.mse_loss(y_pred,y)
+        loss.backward()
+        lr = 3E-4 # 0.0001                                 # 0.01, 0.1 (small learning rate helps to converge for convex optimization.)
+        with torch.no_grad(): 
+                # var_w = var_w - lr*var_w.grad            # this will give error. change it to inline operation.
+                var_w -= lr*var_w.grad                     # as variables are changing dynamically so we have to fine the var_w
+                var_b -= lr*var_b.grad
+        # Run without making gradients zero and observe the loss value
+        var_w.grad.zero_()                                 # make gradients back to zero for next steps. Else it will add values to already existing gradeints.
+        var_b.grad.zero_()
+        if iter%100==0:
+                # if using constant lr as defined in the starting. you can see that the it stuck so uncomment this to see the performance.
+                # lr *= 0.9999
+                print('Iteration:',iter, 'loss value:',loss.item())
+
+print(var_w, var_b)
+
+```
 
 
 
