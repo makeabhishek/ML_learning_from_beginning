@@ -48,7 +48,7 @@ Before we write the code in PyTorch, lets look how can we initialise the tensors
 - Use for representing data in numerical way
 - Tensors can run on GPUs unlike Numpy's array
 
-<img width="1000" alt="image" src="https://github.com/user-attachments/assets/6c1c1668-a8d7-4b75-8a03-974f6f971a1b">
+<img alt="image" src="https://github.com/user-attachments/assets/6c1c1668-a8d7-4b75-8a03-974f6f971a1b" width=70% height=70%>
 
 **Help in Pytorch**
 Always good to chekc the arguments in a function
@@ -299,7 +299,8 @@ We discussed in above section, how computational graphs are generated in PyTorch
 In tensorflow these graphs are compiled apriori to start of DL or NN training, whereas,
 - PyTorch uses dynamic graphs, built at runtime for efficiency. So because of dynamic graph code actually becomes the graph.
 - In the graph, nodes represent operations (functions) and edges represents the tensors.
-![image](https://github.com/user-attachments/assets/cffe0ab3-0374-4968-aec7-d93a348ceef1)
+
+<img alt="image" src="https://github.com/user-attachments/assets/cffe0ab3-0374-4968-aec7-d93a348ceef1" width=50% height=50%>
 
 - Computational graphs are useful in creating `Autograd`. The way it is done that once we build the graph dynamically during tensor operation and recorded all the dependencies. We can now use this dynamic computation graph to compute the gradients for the tensors by travelling in the graph in backward direction. This is performed using __Chain Rule__. Once we compute the backward propagation using chain rule, we get the gradients and once we have have the gradients, the optimization of parameters during model training can go.
 
@@ -313,11 +314,11 @@ In tensorflow these graphs are compiled apriori to start of DL or NN training, w
 Here is an example, how forward anf backward pass works. \
 We can compute $\frac{\partial w}{\partial v}$, which is a log derivative. Once we have log derivative, we can compute $\frac{\partial w}{\partial x}$ and $\frac{\partial w}{\partial y}$, whcih is mult derivative, as long as we knwo the way to compute the derivative for multiplication operation.
 
-![image](https://github.com/user-attachments/assets/8d31c817-8b02-47e2-936c-3e7f251f1c67)
+<img alt="image" src="https://github.com/user-attachments/assets/8d31c817-8b02-47e2-936c-3e7f251f1c67" width=70% height=70%>
 
 In summary,
 
-![image](https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264)
+<img alt="image" src="https://github.com/user-attachments/assets/dfecee58-11cb-447a-9184-73c6cae66264" width=80% height=80%>
 
 ## 4. Gradient Descent with Autograd
 __Exercise__
@@ -393,7 +394,12 @@ print(var_w, var_b)
 
 ```
 
+## GPU usage in PyTorch
+Always carefule in transfering data in cpu and GPU. Is it necessary?
 
+```
+
+```
 
 
 ## classes 
