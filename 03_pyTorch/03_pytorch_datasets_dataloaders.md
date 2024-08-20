@@ -62,7 +62,8 @@ Data often needs preprocessing before training machine learning algorithms There
 - The `torchvision.transforms` module provides several commonly-used transforms
 
 __Data Augmentation:__ Augmenting the original data from the realsitic data which is also realistic,. Data augmentation assist in making model more robust. Example of dfferent transformation on cat image is shown below. These transforms can be performed in dataset class. \
-<img width="511" alt="image" src="https://github.com/user-attachments/assets/79cb4dc6-e6cf-48e6-b35b-05e0f89fe4fd">
+<img width="511" alt="image" src="https://github.com/user-attachments/assets/79cb4dc6-e6cf-48e6-b35b-05e0f89fe4fd"> <img width="346" alt="image" src="https://github.com/user-attachments/assets/5b6b5e3f-1fb9-4aee-a000-38baf1e37d89">
+
 
 
 
