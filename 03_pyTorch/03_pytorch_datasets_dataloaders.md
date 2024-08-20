@@ -66,7 +66,14 @@ __Data Augmentation:__ Augmenting the original data from the realsitic data whic
 
 
 
+## Exercise
+Load MNIST dataset to train and test model
 
+```
+
+images_train.shape
+(60000, 784) # 28x28 images are converted to 1D array
+```
 
 
 
