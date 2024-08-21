@@ -312,8 +312,8 @@ parameterized by these coordinate $z$ where our data  is efficiently represented
 <img src="https://github.com/user-attachments/assets/4061bb2d-5611-4324-a097-a22b47abd282" width=30% height=30%>
 
 latent space can be principal components.  \
-<img src="https://github.com/user-attachments/assets/5b98ae8a-3b89-4e77-b051-1f945dea19f9" width=30% height=30%> \
-<img src="https://github.com/user-attachments/assets/c5cd273d-0c37-40f9-a0ee-550d0b63c4b8" width=30% height=30%>
+<img src="https://github.com/user-attachments/assets/5b98ae8a-3b89-4e77-b051-1f945dea19f9" width=30% height=30%>  <img src="https://github.com/user-attachments/assets/c5cd273d-0c37-40f9-a0ee-550d0b63c4b8" width=30% height=30%> \
+Shallow (Linear) and Deep (nonlinear) auto encoder
 
 
 
