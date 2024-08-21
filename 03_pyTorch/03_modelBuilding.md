@@ -39,7 +39,7 @@ The functional class are available in `torch.nn.module.functional`.
     - Define how the output is computed. In the `__init__()` we have deined bunch of layers but how the differnet layer that we defined in `__init__()` are connected with each other is looked in `forward()` function
     - No need for explicitly call this function
 
-### Simple MLP with 3 FC Layers in PyTorch
+### Simple MLP with three FC Layers in PyTorch
 ```
 import torch
 import torch.nn as nn
