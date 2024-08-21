@@ -122,7 +122,7 @@ Source: computer vision tutorials
 - Survilance: face detection
 
 ## Architectures
-1. AlexNet: The first architecture developed in 2012 at the begining. First convolutional netork architecture for computer vision. It is very similar to the architecture used by yann lecun in 1998, but it was much deeper. Additionally they were the first to train the model in ImageNet data (more than 1.4 million).
+1. AlexNet: 
 2. ZF Net:
 3. GoogLeNet (Inception)
 4. Microsoft ResNet
@@ -132,7 +132,8 @@ Source: computer vision tutorials
 
 
 ### AlexNet (2012)
-The network consists of 5 Conv layers, Max-Pooling layers, Dropout layers, and 3 Fully Connected layers.
+- The first architecture developed in 2012 at the begining. First convolutional netork architecture for computer vision. It is very similar to the architecture used by yann lecun in 1998, but it was much deeper. Additionally they were the first to train the model in ImageNet data (more than 1.4 million).
+- The network consists of 5 Conv layers, Max-Pooling layers, Dropout layers, and 3 Fully Connected layers.
 
 ![image](https://github.com/user-attachments/assets/535d0868-041b-4d20-b63b-bdb5187eb713) \
 Alexnet architecture (May look weird becasue there are two differnet "streams." This is becasue the training process was so computationally expensive that they had to split the training onto two GPU's.)
