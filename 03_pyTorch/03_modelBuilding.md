@@ -293,7 +293,12 @@ To keep track of hidden state we introduce Lagrange multiplier variable that sat
 From Reference paper. 
 
 ## Autoencoders
-We can think SVD as a very simple NN. SVD is also know as PCA/POD.
+Autoencoders are shown in\
+1. D.E. Rumelhart, G.E. Hinton, and R.J. Williams, "Learning internal representations by error propagation." , Parallel Distributed Processing. Vol 1: Foundations. MIT Press, Cambridge, MA, 1986.
+2. Ballard, "Modular learning in neural networks," Proceedings AAAI (1987).
+3. Bank, Dor, Noam Koenigstein, and Raja Giryes. "Autoencoders." Machine learning for data science handbook: data mining and knowledge discovery handbook (2023): 353-374.
+
+We can think SVD as a very simple autoencoder NN. SVD is also know as PCA/POD.
 
 ![image](https://github.com/user-attachments/assets/13a92c7b-8d87-4bdf-8647-c70612891c1d) \
 Autoencoder (Shallow, linear)
