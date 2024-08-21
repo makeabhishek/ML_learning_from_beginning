@@ -138,6 +138,8 @@ Source: computer vision tutorials
 ![image](https://github.com/user-attachments/assets/535d0868-041b-4d20-b63b-bdb5187eb713) \
 Alexnet architecture (May look weird becasue there are two differnet "streams." This is becasue the training process was so computationally expensive that they had to split the training onto two GPU's.)
 
+![image](https://github.com/user-attachments/assets/ce8febab-b6ab-4a23-a99a-c99f135c08d0)
+
 <img width="728" alt="image" src="https://github.com/user-attachments/assets/bd431a73-9b41-47d8-a73b-10bcd810c4d4">
 
 ### ZF Net (2013)
