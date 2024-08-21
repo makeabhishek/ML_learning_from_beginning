@@ -230,13 +230,12 @@ Use Dense Layers as connections and concatenate.
 # Remarks on networks
 
 ## Comparison
-<img width="734" alt="image" src="https://github.com/user-attachments/assets/98ef0c5e-03a9-4b6f-8f45-6917a5720e65">
+<img src="https://github.com/user-attachments/assets/98ef0c5e-03a9-4b6f-8f45-6917a5720e65" width=50% height=50%>
 
 ## Double Descent
 As we keep increasing number of parameters of the network or width of network, we will see the reduction of error. but if we keep going forward, we use double descent. This help in more generalization.
 
-![image](https://github.com/user-attachments/assets/aabc3c77-f5dc-40f0-be10-589e13f4866e)
-
+<img src="https://github.com/user-attachments/assets/aabc3c77-f5dc-40f0-be10-589e13f4866e" width=50% height=50%>
 
 # Analogy of architecture with matehmatics
 ## ResNet: 
@@ -251,7 +250,7 @@ To write this down in kind of math what this ends up saying is that the output (
 We know that Euler integration especially for large timestep is pretty bad way to integrate. If a residual network is doing Euler Integration through vector field $f$. Then the thing that neural network is learning this residual can also be
 thought of as a vector field uh some differential equation $\dot{x}$ equals $f$ that we are essentially time stepping forward with this residual Network.
 
-![image](https://github.com/user-attachments/assets/6dc8099b-e74b-49a1-b5d9-52d27c5bb3f1)
+<img src="https://github.com/user-attachments/assets/6dc8099b-e74b-49a1-b5d9-52d27c5bb3f1" width=20% height=20%>
 
 Euler integration is usually a bad idea it's very quick and dirty but it's also highly prone to instability and it has huge errors it's the worst way you could integrate a particle through a vector. A better way to do this is using Neural ODE.
 
@@ -262,7 +261,7 @@ Instead of modeling residual ($f$) using an Euler integration time step, maybe w
 
 So in this neural ODE if I am modeling the right hand side of a continuous time differential equation $\frac{d}{dt} x = f(x)$, whereas Euler integration $x_{k+1}=x_k + f(x_k)$ in ResNet is kind of a discrete time approximation of this continuous time differential equation. I can use the neural network to model $f$ directly and if I have this function $f$ we know from classical mathematics, such as, Newton Lebnitz Euler lagrange mathematics. We know how to solve these differential equations. 
 
-![image](https://github.com/user-attachments/assets/f9b087ce-7b80-4289-95d5-8da72a9743cc)
+<img src="https://github.com/user-attachments/assets/f9b087ce-7b80-4289-95d5-8da72a9743cc" width=20% height=20%>
 
 $$
 \begin{align}
@@ -280,20 +279,20 @@ Neural ODE is inspired by a residual networks. Recognizing that ResNets are esse
 
 In contrast, Neural ODE models the actual differential equation on the right hand side itself instead of just a onetime step update or flow map of that differential equation and then once we represent the system this way and try to train thr neural network to represent the continuous RHS (i.e, $f(x)$) of $\frac{d}{dt} x = f(x)$, now we can use different numerical integration schemes to train the parameters of $f$ to be consistent with training data points. 
 
-![image](https://github.com/user-attachments/assets/1e5fdbfe-b5cf-48ce-86b3-dd9a655e5060)
+<img src="https://github.com/user-attachments/assets/1e5fdbfe-b5cf-48ce-86b3-dd9a655e5060" width=40% height=40%>
 
 In other words, with neural ODE, I actually can have irregularly spaced points in time. I don't need them to be evenly spaced like in the ResNets because I'm using data points to train the parameters of this neural network $f$ and what I'm doing is essentially tweaking the parameters of $f$ so that when I discretize the numerical integrator (above block diagram in figure) and trying to fir the training data. They fit as accurately as possible so that if I numerically  integrate (using fancy integrator, i.e, ML) along that Vector field I get as close to the data I'm sampling as possible.
 
 We can use all the standard tricks of __Auto differentiation__ and __back propagation__ to tweak those Network parameters for $f$ based on this observational (training) data but under the hood we are time stepping our Vector field $f$ using a fancy better numerical integrator than something like ResNet's Euler Integrator.
 
-![image](https://github.com/user-attachments/assets/6073ab84-1bf4-4f3c-82f8-b32cec412893)
+<img src="https://github.com/user-attachments/assets/6073ab84-1bf4-4f3c-82f8-b32cec412893" width=40% height=40%>
 
 To keep track of hidden state we introduce Lagrange multiplier variable that satisfy the differential equation and we can compute that using adjoint lagrange equation.
 
-![image](https://github.com/user-attachments/assets/b013699d-6ba3-4d5e-a3ba-7863391a929e)
+<img src="https://github.com/user-attachments/assets/4061bb2d-5611-4324-a097-a22b47abd282" width=30% height=30%>
 
 ### Comparison between ResNet and NeuralODE
-<img width="422" alt="image" src="https://github.com/user-attachments/assets/b7b876a6-d883-4f70-b4b7-635b9bfc9f9c"> \
+<img width="422" alt="image" src="https://github.com/user-attachments/assets/b013699d-6ba3-4d5e-a3ba-7863391a929e"> \
 From Reference paper. 
 
 ## Autoencoders
@@ -304,17 +303,17 @@ Autoencoders are shown in\
 
 We can think SVD as a very simple autoencoder NN. SVD is also know as PCA/POD.
 
-![image](https://github.com/user-attachments/assets/13a92c7b-8d87-4bdf-8647-c70612891c1d)\
+<img src="https://github.com/user-attachments/assets/13a92c7b-8d87-4bdf-8647-c70612891c1d" width=30% height=30%> \
 Autoencoder (Shallow, linear)
 
 We generalize this linear coordinate embedding by making it now a deep neural network so instead of one latent space layer now we're going to have many many hidden layers for the encoder many hidden layers for the decoder and our activation units (nodes) are going to have non-linear activation functions. So this allows us to do is instead of learning a linear subspace where our data is efficiently represented now we're able to learn a non-linear manifold  
-parameterized by these coordinate $z$ where our data  is efficiently represented and often that means we can get a massive reduction in degrees of freedom  needed to describe this latent space z good and
+parameterized by these coordinate $z$ where our data  is efficiently represented and often that means we can get a massive reduction in degrees of freedom  needed to describe this latent space $z$.
 
-![image](https://github.com/user-attachments/assets/4061bb2d-5611-4324-a097-a22b47abd282)
+<img src="https://github.com/user-attachments/assets/4061bb2d-5611-4324-a097-a22b47abd282" width=30% height=30%>
 
-latent space can be principal components. 
-![image](https://github.com/user-attachments/assets/5b98ae8a-3b89-4e77-b051-1f945dea19f9) \
-![image](https://github.com/user-attachments/assets/c5cd273d-0c37-40f9-a0ee-550d0b63c4b8)
+latent space can be principal components.  \
+<img src="https://github.com/user-attachments/assets/5b98ae8a-3b89-4e77-b051-1f945dea19f9" width=30% height=30%> \
+<img src="https://github.com/user-attachments/assets/c5cd273d-0c37-40f9-a0ee-550d0b63c4b8" width=30% height=30%>
 
 
 
