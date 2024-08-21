@@ -264,7 +264,11 @@ So in this neural ODE if I am modeling the right hand side of a continuous time 
 
 ![image](https://github.com/user-attachments/assets/f9b087ce-7b80-4289-95d5-8da72a9743cc)
 
-$𝑥_{𝑘+1} = 𝑥_𝑘 + \int_{t_k}^{t_{k+1}} 𝑓(𝑥(\tau)) 𝑑\tau$
+$$
+\begin{align}
+𝑥_{𝑘+1} = 𝑥_𝑘 + \int_{t_k}^{t_{k+1}} 𝑓(𝑥(\tau)) 𝑑\tau
+\end{align}
+$$
 
 Even in the modern computational era we have a lot more experience in solving these kinds of differential equations by stepping them forward numerically than we have experience with machine learning. Numerical integration is way older than
 modern machine learning. Therefore, if I have neural ODE representation of my differential equation i.e, if I learned function $f$ with a neural network I can essentially write down exactly $x_{k+1}$ in Euler integration is in terms of  function $f$ in $x_{k+1} = \int_{t_k}^{t_{k+1}} f(x(\tau)) d\tau$, which is not an approximation. It is the exact expression for $x$ at timestep $k + 1$ given this differential equation $\frac{d}{dt} x = f(x)$. However, this integral operator equation is hard to compute. This is what a mathematician would write down as the solution. But there are better numerical integrators to approximate $x_{k+1}$ (Figure) than that of forward Euler solution.
@@ -300,7 +304,7 @@ Autoencoders are shown in\
 
 We can think SVD as a very simple autoencoder NN. SVD is also know as PCA/POD.
 
-![image](https://github.com/user-attachments/assets/13a92c7b-8d87-4bdf-8647-c70612891c1d) \
+![image](https://github.com/user-attachments/assets/13a92c7b-8d87-4bdf-8647-c70612891c1d)\
 Autoencoder (Shallow, linear)
 
 We generalize this linear coordinate embedding by making it now a deep neural network so instead of one latent space layer now we're going to have many many hidden layers for the encoder many hidden layers for the decoder and our activation units (nodes) are going to have non-linear activation functions. So this allows us to do is instead of learning a linear subspace where our data is efficiently represented now we're able to learn a non-linear manifold  
