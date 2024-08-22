@@ -70,7 +70,9 @@ def load_mnist(path, kind='train'):
                                 offset=16.reshape(len(labels), 784))
 
     return images, lables
+```
 
+```
 # Define dataset class
 class FMNIST(torch.utilis.data.Datasets):
     def __init__(self,path,kind='train',device='cpu'):
