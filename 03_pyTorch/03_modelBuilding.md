@@ -291,8 +291,7 @@ To keep track of hidden state we introduce Lagrange multiplier variable that sat
 
 <img src="https://github.com/user-attachments/assets/4061bb2d-5611-4324-a097-a22b47abd282" width=30% height=30%>
 
-### Comparison between ResNet and NeuralODE
-<img width="422" alt="image" src="https://github.com/user-attachments/assets/b013699d-6ba3-4d5e-a3ba-7863391a929e"> \
+<img src="https://github.com/user-attachments/assets/b013699d-6ba3-4d5e-a3ba-7863391a929e" width=50% height=50%>
 From Reference paper. 
 
 ## Autoencoders
