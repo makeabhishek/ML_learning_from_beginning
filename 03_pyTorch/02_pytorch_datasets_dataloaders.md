@@ -74,7 +74,7 @@ def load_mnist(path, kind='train'):
 
 ```
 # Define dataset class
-class FMNIST(torch.utilis.data.Datasets):
+class FMNIST(torch.utils.data.Dataset): # We inherit the c;lass from torch.utils.data.Dataset
     def __init__(self,path,kind='train',device='cpu'):
         super().__init__()
         self.images, self.labels = load_mnist(path, kind=kind)
@@ -87,6 +87,25 @@ class FMNIST(torch.utilis.data.Datasets):
 
     def __len__(self):
         return self.images.shape[0]
+
+# Instead of inheriting from torch.utils.data.Dataset, we define our own custom dataset class.
+class CustomDatset:
+    # The first part is initilisation, This calss will consit of __init__ with some arguments (self), and then do something 'pass'
+    def __init__(self, data, targets):
+        self.data = data
+        self.targets = targets
+
+    # The second part is __len__ to return the length of datast.
+    def  __len__(self):
+        return len(self.data)
+
+    # third thing is __getitem__, that takes an index a single value between 0 and -1. If data has 1000 samples so index will be from 0 to 999. It can return dictionary
+    def __getitem__(self, idx):
+        current_sample = slef.data[idx, :]
+        current_target = self.targets[idx]
+        return {"samples": torch.tensor(current_sample, dtype=torch.float),
+                "target": torch.tensor(current_target, dtype=torch.long)
+                }
 ```
 
 ### Dataloaders
