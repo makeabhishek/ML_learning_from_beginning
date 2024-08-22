@@ -47,7 +47,44 @@ Custom dataset aloows to load tht datasets on the fly while using __getitem__() 
 
 __Example__
 ```
+# Define a function to load test and train data.
+def load_mnist(path, kind='train'):
+    import os
+    import gzip
+    import numpy as np
 
+    """Loas MNIST data from 'path'"""
+    labels_path = os.path.join(path,
+                                '%s-labels-idx1-ubyte.gz'
+                                % kind)
+    images_path = os.path.join(path,
+                                '%s-images-idx3-ubyte.gz'
+                                % kind)
+
+    with gzip.open(labels_path, 'rb') as lbpath:
+        labels = np.frombuffer(lbpath.read(), dtype=np.unit8,
+                                offset=8)
+
+    with gzip.open(images_path, 'rb') as imgpath:
+        images = np.frombuffer(imgpath.read(), dtype=np.unit8,
+                                offset=16.reshape(len(labels), 784))
+
+    return images, lables
+
+# Define dataset class
+class FMNIST(torch.utilis.data.Datasets):
+    def __init__(self,path,kind='train',device='cpu'):
+        super().__init__()
+        self.images, self.labels = load_mnist(path, kind=kind)
+        self.device = device
+
+    def __getitem__(self, idx):
+        image, label = slef.images[idx,:], slef.labels[idx]
+        image = torch.FloatTensor(image), view(-1,28,28).to(self.device)
+        label = torch.from_numpy(np.array([label])).to(self.device)
+
+    def __len__(self):
+        return self.images.shape[0]
 ```
 
 ### Dataloaders
@@ -74,12 +111,30 @@ __Data Augmentation:__ Augmenting the original data from the realsitic data whic
 
 
 ## Exercise
-Load MNIST dataset to train and test model
+Load MNIST dataset to train and test model. Create custom network. \
+Create a class called `Net` and we are subclassing it with `torch.nn.Module`. `torch.nn.Module` is a base calss whcih provides a lot of features for forward, backward computation and all. It essentially provides module for computing different layers and necessary items for NN.
 
 ```
 
-images_train.shape
-(60000, 784) # 28x28 images are converted to 1D array
+class Net(torch.nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        # Instantiating different layers that will be used in network. But I have not provided any pipeline about the structure of the NN, which layer will come first and last.
+        # We will do this in forward function or forward path, where we define how the architecture moves.
+        self.conv1 = torch.nn.conv2d(1, 20, 5, 1)
+        self.conv2 = torch.nn.conv2d(20, 50, 5, 1)
+        self.fc1 = torch.nn.Linear(4*4*50, 500)
+        self.fc2 = torch.nn.Linear(500, 10)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.max_pool2d(x,2,2)
+        x = F.relu(self.conv2(x))
+        x = F.max_pool2d(x,2,2)
+        x = x.view(-1, 4*4*50)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return F.log_softmax(x, dim=1)
 ```
 
 
