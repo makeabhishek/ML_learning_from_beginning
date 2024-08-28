@@ -1,24 +1,16 @@
 ## Python
-
-- __Introduction__ – Python, IPython, Jupyter
-- __Base Data Types__ – Integers, Floats, Complex, Booleans, Strings
-- __Container Data Types__ – Lists, Tuples, Sets, Dictionaries
-- __Control Statements & Files__ – If, While, For
-
-
-
 __Packages__
 matplotlib, numpy, pandas
 
 1. Python Environment
-&nbsp; - What is Python and why to use  Python?
-&nbsp; - Command Line
-&nbsp; - Python Interactive
-&nbsp; - IPython
+&nbsp; - What is Python and why to use  Python? \
+&nbsp; - Command Line \
+&nbsp; - Python Interactive \
+&nbsp; - IPython \
 &nbsp; - JupyterLab
 
 2.Base Data Types in Python \
-&nbsp; - Numeric Types \
+&nbsp; - Numeric Types (Integers, Floats, Complex) \
 &nbsp; - Strings \
 &nbsp; - Booleans 
 
