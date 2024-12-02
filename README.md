@@ -12,4 +12,10 @@ __Machine learning is the process of building models from data using optimizatio
 
 Optimization (step 5) is used to tune the parameters of the NN architechture (step 3) to minimize loss funciton (step 4), averaged over training data (step 2).
 
-
+For a better understanding of ML as an engineer, I think we should follow this route,
+1. Python Basics
+2. Machine Learning (Classical)
+3. Deep learning
+4. Data Analysis
+5. Physics Informed Neural Network (PINNS)
+6. Software Engineering
