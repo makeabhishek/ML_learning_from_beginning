@@ -26,3 +26,4 @@ For a better understanding of ML as an engineer, I think we should follow this r
 3. [Constrained Optimization: Intuition behind the Lagrangian](https://www.youtube.com/watch?v=GR4ff0dTLTw)
 4. [Dive into Deep Learning](https://d2l.ai/index.html)
 5. [DATA DRIVEN SCIENCE & ENGINEERING, Steven L. Brunton & J.Nathan Kutz](https://databookuw.com/)
+6. [Introduction to Computational Thinking Math from computation, math with computation](https://computationalthinking.mit.edu/Spring21/syllabus/)
