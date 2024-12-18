@@ -24,3 +24,5 @@ For a better understanding of ML as an engineer, I think we should follow this r
 1. [Foundations of Machine Learning: Understand the Concepts, Techniques and Mathematical Frameworks Used by Experts in Machine Learning](https://bloomberg.github.io/foml/#about)
 2. [Deep Learning at VU University Amsterdam](https://dlvu.github.io/)
 3. [Constrained Optimization: Intuition behind the Lagrangian](https://www.youtube.com/watch?v=GR4ff0dTLTw)
+4. [Dive into Deep Learning](https://d2l.ai/index.html)
+5. [DATA DRIVEN SCIENCE & ENGINEERING, Steven L. Brunton & J.Nathan Kutz](https://databookuw.com/)
