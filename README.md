@@ -27,3 +27,4 @@ For a better understanding of ML as an engineer, I think we should follow this r
 4. [Dive into Deep Learning](https://d2l.ai/index.html)
 5. [DATA DRIVEN SCIENCE & ENGINEERING, Steven L. Brunton & J.Nathan Kutz](https://databookuw.com/)
 6. [Introduction to Computational Thinking Math from computation, math with computation](https://computationalthinking.mit.edu/Spring21/syllabus/)
+7. [NPTEL Course: Machine Learning for Engineering and Science Applications](https://www.youtube.com/watch?v=_M-nDb0MIa4&list=PLyqSpQzTE6M-SISTunGRBRiZk7opYBf_K&index=1)
