@@ -29,10 +29,10 @@ Install Pytorch. Check the PyTorch official website \
     `pip install --proxy http://proxyout.lanl.gov:8080 torch torchvision torchaudio`  \
     
 Test pytorch in python \
-    python  \
-    import torch  \
-    x=torch.rand(3) \
-    print(x) \
+    `python`  \
+    `import torch`  \
+    `x=torch.rand(3)` \
+    `print(x)` \
     
 Check if CUDA is available \
     `torch.cuda.is_available()` \
