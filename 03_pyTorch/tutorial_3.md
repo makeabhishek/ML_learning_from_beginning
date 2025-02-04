@@ -32,7 +32,7 @@ We have input x and 2; output is y. Pytorch creae a computaitonal graphy using u
 |    T            -                               | grad_fn      U       |
 |    S         (2)                                |              T       |
 |               <------ Add Backward (dy/dx) <-----                      |
---------------------------------------------------------------------------
+-------------------------------------------------------------------------- 
 First we do a Forward Pass. We calcaute the output y. Sisnce we specified that it 
 requires the gradient. Pytorch will automatically creates and store a fcuntion for us.
 This funsiton is than used in the backppropagation to get the gradeints. Here `y` has an attribute `grad_fn`
