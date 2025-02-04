@@ -20,19 +20,27 @@
 ### PyTorch Tutorial 01 - Installation
 At this step, it is beleived that you have anaconda installed \
 Create new virtual environment: \
-    `conda create --name pytorch`  \
+```
+conda create --name pytorch
+```   
+Activate environemnt 
+```
+conda activate pytorch
+```
     
-Activate environemnt \
-    `conda activate pytorch`  \
+Install Pytorch. Check the PyTorch official website
+```
+pip install --proxy http://proxyout.lanl.gov:8080 torch torchvision torchaudio
+```
     
-Install Pytorch. Check the PyTorch official website \
-    `pip install --proxy http://proxyout.lanl.gov:8080 torch torchvision torchaudio`  \
-    
-Test pytorch in python \
-    `python`  \
-    `import torch`  \
-    `x=torch.rand(3)` \
-    `print(x)` \
+Test pytorch in python
+```
+python
+import torch
+x=torch.rand(3)
+print(x)
+```
     
 Check if CUDA is available \
     `torch.cuda.is_available()` \
+
