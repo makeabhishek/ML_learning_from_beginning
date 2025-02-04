@@ -18,9 +18,14 @@ let's do some operation
 y = x + 2 
 ```
 
-We do an operation y = x+ 2
+We do an operation 
+
+$$y = x+ 2$$
+
 It will create a computaitonal graph. For each operation we have a nodes with input and output. Here operation is additon 
 We have input x and 2; output is y. Pytorch creae a computaitonal graphy using use backpropagation to calcaulte the gradients
+
+```
 --------------------------------------------------------------------------
 |                           y = x + 2                                    |              
 |                ----------> Forward -------->                           |
@@ -32,7 +37,8 @@ We have input x and 2; output is y. Pytorch creae a computaitonal graphy using u
 |    T            -                               | grad_fn      U       |
 |    S         (2)                                |              T       |
 |               <------ Add Backward (dy/dx) <-----                      |
--------------------------------------------------------------------------- 
+--------------------------------------------------------------------------
+```
 First we do a Forward Pass. We calcaute the output y. Sisnce we specified that it 
 requires the gradient. Pytorch will automatically creates and store a fcuntion for us.
 This funsiton is than used in the backppropagation to get the gradeints. Here `y` has an attribute `grad_fn`
@@ -41,6 +47,7 @@ calculate the gradeints, so called backward path. this will calcualte gradeint `
 
 In the background it basically creates a vector Jacobian products to get the gradients, whcih will look like
 We have Jacobain matrix of partial derivatives, whcih we multiply it with gradient vector we will get the final gradeitns whcih we are intersted in. Also called Chain rule
+```
 
         \frac{\partial y_1}{\partial x_1}  . . . \frac{\partial y_m}{\partial x_m} 
                         .               .                       .
@@ -48,10 +55,9 @@ J.v =                   .                   .                   .               
                         .                       .               .
         \frac{\partial y_1}{\partial x_n}  . . . \frac{\partial y_m}{\partial x_n}
 
-So note that we have to multiply `J` with vector `v`
-However in above case z is a scalar value so we dont need to use argument for our backward funciton. But for vector lets see
-
-"""
+```
+So note that we have to multiply $J$ with vector $v$
+However in above case $z$ is a scalar value so we dont need to use argument for our backward funciton. But for vector lets see
 
 ```
 print(x)
