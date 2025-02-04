@@ -4,7 +4,7 @@ You may be aware of arrays from numpy. Tensor can be of any diemnsion
 ```
 import torch
 ```
-#### Create an empty 1D Tensor
+#### Create an empty 1D Tensor 
 ```
 x= torch.empty(1)
 print(x)
