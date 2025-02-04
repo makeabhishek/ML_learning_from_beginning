@@ -48,14 +48,17 @@ calculate the gradeints, so called backward path. this will calcualte gradeint `
 In the background it basically creates a vector Jacobian products to get the gradients, whcih will look like
 We have Jacobain matrix of partial derivatives, whcih we multiply it with gradient vector we will get the final gradeitns whcih we are intersted in. Also called Chain rule
 ```
-
-        \frac{\partial y_1}{\partial x_1}  . . . \frac{\partial y_m}{\partial x_m} 
-                        .               .                       .
-J.v =                   .                   .                   .                   (\frac{\partial l}{\partial y_1 ... \frac{\partial l}{\partial y_m}})^T = (\frac{\partial l}{\partial x_1 ... \frac{\partial l}{\partial x_n}})^T 
-                        .                       .               .
-        \frac{\partial y_1}{\partial x_n}  . . . \frac{\partial y_m}{\partial x_n}
-
+$$
+J.v =
+\begin{bmatrix} 
+\frac{\partial y_1}{\partial x_1} &  . . . & \frac{\partial y_m}{\partial x_m} \\
+                        .       &        .             &          . \\
+                   .                   .                   .            \\
+                        .       &                .    &           . \\
+\frac{\partial y_1}{\partial x_n} &  . . . & \frac{\partial y_m}{\partial x_n} \\
+\end{bmatrix}$$
 ```
+
 So note that we have to multiply $J$ with vector $v$
 However in above case $z$ is a scalar value so we dont need to use argument for our backward funciton. But for vector lets see
 
