@@ -1,6 +1,6 @@
 Here are the Jupyter notebooks to start coding
 
-## Tutorial of Contents
+## Table of Contents for Tutorial
 
 1. Pytorch Installation
 2. Basics of PyTorch (and Tensors)\
