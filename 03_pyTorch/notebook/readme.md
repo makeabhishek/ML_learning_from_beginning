@@ -2,7 +2,7 @@ Here are the Jupyter notebooks to start coding
 
 ## Tutorial of Contents
 
-__1. Pytorch Installation
+1. Pytorch Installation
 2. Basics of PyTorch (and Tensors)\
         2.1 Overview \
         2.2 Tensor Basics
@@ -25,4 +25,4 @@ __1. Pytorch Installation
 15. Convolutional Neural Net (CNN)
 16. Transfer Learning
 17. Tensorboard
-18. Save and Load Models__
+18. Save and Load Models
