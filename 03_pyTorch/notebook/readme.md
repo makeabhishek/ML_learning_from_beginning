@@ -6,8 +6,8 @@ Here are the Jupyter notebooks to start coding
 2. Tensor Basics
 3. Autograd
 4. Backpropagation
-5. Gradient Descent With Autograd and Backpropagation
-  5.1 Understand linear Regression
+5. Gradient Descent With Autograd and Backpropagation \
+    5.1 Understand linear Regression
 6. Training Pipeline: Model, Loss, and Optimizer
 7. Linear Regression
 8. Logistic Regression
