@@ -3,20 +3,26 @@ Here are the Jupyter notebooks to start coding
 ## Tutorial of Contents
 
 1. Pytorch Installation
-2. Tensor Basics
-3. Autograd
-4. Backpropagation
-5. Gradient Descent With Autograd and Backpropagation \
-    5.1 Understand linear Regression
-6. Training Pipeline: Model, Loss, and Optimizer
-7. Linear Regression
-8. Logistic Regression
-9. Dataset and DataLoader
-10. Dataset Transforms
-11. Softmax And Cross Entropy
-12. Activation Functions
-13. Feed-Forward Neural Net
-14. Convolutional Neural Net (CNN)
-15. Transfer Learning
-16. Tensorboard
-17. Save and Load Models
+2. Basics of PyTorch (and Tensors)\
+        2.1 Overview \
+        2.2 Tensor Basics
+        2.3 Tensors Operations and Manipulation \
+        2.4 Gradient Calculation and intro to Computational Graph (CG)
+4. Concepts in PyTorch \
+        3.1 Autograd \
+        3.2 computational graphs
+5. Backpropagation
+6. Gradient Descent With Autograd and Backpropagation \
+        5.1 Understand linear Regression
+7. Training Pipeline: Model, Loss, and Optimizer
+8. Linear Regression
+9. Logistic Regression
+10. Dataset and DataLoader
+11. Dataset Transforms
+12. Softmax And Cross Entropy
+13. Activation Functions
+14. Feed-Forward Neural Net
+15. Convolutional Neural Net (CNN)
+16. Transfer Learning
+17. Tensorboard
+18. Save and Load Models
