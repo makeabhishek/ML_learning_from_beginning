@@ -5,7 +5,7 @@ Here are the Jupyter notebooks to start coding
 1. Pytorch Installation
 2. Basics of PyTorch (and Tensors)\
         2.1 Overview \
-        2.2 Tensor Basics
+        2.2 Tensor Basics \
         2.3 Tensors Operations and Manipulation \
         2.4 Gradient Calculation and intro to Computational Graph (CG)
 4. Concepts in PyTorch \
