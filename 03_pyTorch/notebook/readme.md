@@ -7,10 +7,10 @@ Here are the Jupyter notebooks to start coding
         2.1 Overview \
         2.2 Tensor Basics \
         2.3 Tensors Operations and Manipulation \
-                   2.3.1 Basic Matrix Algebra
-                   2.3.2 Advanced Matrix Algebra
-                   2.3.3 Matrix Algebra for Deep learning
-        2.4 Gradient Calculation and intro to Computational Graph (CG)
+                   2.3.1 Basic Matrix Algebra \
+                   2.3.2 Advanced Matrix Algebra \
+                   2.3.3 Matrix Algebra for Deep learning \
+        2.4 Gradient Calculation and intro to Computational Graph (CG) \
 4. Concepts in PyTorch \
         3.1 Autograd \
         3.2 computational graphs
